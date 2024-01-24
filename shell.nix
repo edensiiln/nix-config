@@ -1,6 +1,6 @@
 # configurations for shells and shell prompts
 { config, pkgs, ... }:
-{
+let
   shellAliases = {
     nixsw = "sudo nixos-rebuild switch";
     nixswf = "sudo nixos-rebuild switch --flake";
@@ -31,6 +31,9 @@
     yta-mp3 = "yt-dlp --extract-audio --audio-format mp3";
     ytv-best = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4";
   };
+in
+{
+  
 
   # Shells
   programs.bash = {
