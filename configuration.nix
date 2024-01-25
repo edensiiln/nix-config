@@ -6,7 +6,9 @@
 
 {
   imports = [
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
+    ./x11.nix
+    #./sway.nix
   ];
 
   boot.loader.grub = {
@@ -40,25 +42,10 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # X11
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "";
-    displayManager.lightdm.enable = true;
-    windowManager.leftwm.enable = true;
-    #libinput.enable = true; # Touchpad
-  };
-
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
 
-  # Wayland
-  #services.xserver.enable = false;
-  #programs.sway.enable = true;
-
   #services.polybar.enable = true;
-
   services.printing.enable = true;
 
   # Polkit
@@ -89,12 +76,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
     #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Bluetooth
@@ -144,11 +126,8 @@
     dedicatedServer.openFirewall = true;
   };
 
-  #nixpkgs.config.permittedInsecurePackages = [
-  #  "electron-25.9.0"
-  #];
-  
   #xdg.portal.enable = true;
+
   #services.flatpak.enable = true;
 
   # OpenSSH daemon
