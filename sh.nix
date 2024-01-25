@@ -2,17 +2,9 @@
 { config, pkgs, ... }:
 let
   shellAliases = {
-    nixsw = "sudo nixos-rebuild switch";
-    nixswf = "sudo nixos-rebuild switch --flake";
-    nixswd = "sudo nixos-rebuild switch --flake ~/.dotfiles";
-
     ns = "sudo nixos-rebuild switch";
     nsf = "sudo nixos-rebuild switch --flake";
     nsd = "sudo nixos-rebuild switch --flake ~/.dotfiles";
-
-    homesw = "home-manager switch";
-    homeswf = "home-manager switch --flake";
-    homeswd = "home-manager switch --flake ~/.dotfiles";
 
     hs = "home-manager switch";
     hsf = "home-manager switch --flake";
@@ -34,7 +26,6 @@ let
 in
 {
   
-
   # Shells
   programs.bash = {
     enable = true;

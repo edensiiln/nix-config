@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./shell.nix
+    ./sh.nix
   ];
 
   programs.home-manager.enable = true;
@@ -11,13 +11,6 @@
   home.stateVersion = "23.11"; # don't change unless you know what you're doing
 
   nixpkgs.config.allowUnfree = true;
-
-  # Shell Prompt
-  programs.starship = {
-    enable = true;
-    settings = {
-    };
-  };
 
   # Terminal Emulators
   programs.alacritty = {
