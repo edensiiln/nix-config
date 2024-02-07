@@ -8,7 +8,8 @@
   imports = [
     ./hardware-configuration.nix
     #./x11.nix
-    ./sway.nix
+    #./sway.nix
+    ./hyprland/hyprland-system.nix
   ];
 
   boot.loader.grub = {
@@ -76,7 +77,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    #jack.enable = true;
+    jack.enable = true;
   };
 
   # Bluetooth

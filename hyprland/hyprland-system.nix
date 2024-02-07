@@ -1,5 +1,15 @@
 { config, pkgs, ...}:
-
+let
+background = ./../backgrounds/pink-clouds.png;
+init = ''
+ #!/usr/bin/env bash
+  sww init &
+  sww img ${background} &
+  nm-applet --indicator &
+  waybar &
+  mako
+'';
+in
 {
   programs.hyprland = {
     enable = true;
@@ -24,7 +34,8 @@
     swww # wallpaper daemon
     rofi-wayland
     grim # screenshots
-    slurp # screenshots 
+    slurp # screenshots
+    networkmanagerapplet
     ];
 
   services.greetd = {
@@ -35,7 +46,7 @@
 	  --time \
           --asterisks \
 	  --user-menu \
-	  --cmd hyprland
+	  --cmd ${init} 
       '';
     };
   };
