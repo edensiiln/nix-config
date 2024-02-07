@@ -2,6 +2,7 @@
 {
   imports = [
     ./sh.nix
+    ./hyprland/hyprland-home.nix
   ];
 
   programs.home-manager.enable = true;
@@ -67,6 +68,7 @@
     bat
     z-lua
     gparted
+    pavucontrol
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

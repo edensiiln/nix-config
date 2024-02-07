@@ -1,20 +1,48 @@
 { config, pkgs, ...}:
-let
-background = ./../backgrounds/pink-clouds.png;
-init = ''
- #!/usr/bin/env bash
-  sww init &
-  sww img ${background} &
-  nm-applet --indicator &
-  waybar &
-  mako
-'';
-in
+#let
+#background = ./../backgrounds/pink-clouds.png;
+#init = ''
+# #!/usr/bin/env bash
+#  sww init &
+#  sww img ${background} &
+#  nm-applet --indicator &
+#  waybar &
+#  mako
+#'';
+#in
 {
   programs.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
     xwayland.enable = true;
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session.command = ''
+        ${pkgs.greetd.tuigreet}/bin/tuigreet \
+	  --time \
+          --asterisks \
+	  --user-menu \
+	  --cmd Hyprland
+      '';
+    };
+  };
+  environment.etc."greetd/environments".text = ''
+    hyprland
+  '';
+
+  # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   environment.sessionVariables = {
@@ -32,28 +60,12 @@ in
     mako # notification daemon
     libnotify
     swww # wallpaper daemon
+    wofi
     rofi-wayland
     grim # screenshots
     slurp # screenshots
     networkmanagerapplet
     ];
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session.command = ''
-        ${pkgs.greetd.tuigreet}/bin/tuigreet \
-	  --time \
-          --asterisks \
-	  --user-menu \
-	  --cmd ${init} 
-      '';
-    };
-  };
-
-  environment.etc."greetd/environments".text = ''
-    hyprland
-  '';
 
   xdg.portal.enable = true;
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
