@@ -7,8 +7,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./x11.nix
-    #./sway.nix
+    #./x11.nix
+    ./sway.nix
   ];
 
   boot.loader.grub = {
