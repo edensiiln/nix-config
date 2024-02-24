@@ -3,8 +3,6 @@
   wayland.windowManager.hyprland.settings = {
 
     monitor = ",preferred,auto,auto";
-
-    exec-once = "waybar & discord";
     #source = ./hyprland-colors.conf
 
     env = "XCURSOR_SIZE,24";
@@ -25,7 +23,7 @@
 
     general = {
       gaps_in = "5";
-      gaps_out = "20";
+      gaps_out = "10";
       border_size = "2";
       "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
       "col.inactive_border" = "rgba(595959aa)";
@@ -36,7 +34,7 @@
     };
 
     decoration = {
-      rounding = "10";
+      rounding = "5";
 
       blur = {
         enabled = true;
@@ -52,26 +50,9 @@
 
     animations = {
       enabled = "yes";
-
       bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-
-      #animation = "windows, 1, 7, myBezier";
-      #animation = "windowsOut, 1, 7, default, popin 80%";
-      #animation = "border, 1, 10, default";
-      #animation = "borderangle, 1, 8, default";
-      #animation = "fade, 1, 7, default";
-      #animation = "workspaces, 1, 6, default";
     };
-    extraConfig = ''
-      animations {
-        animation = windows, 1, 7, myBezier
-        animation = windowsOut, 1, 7, default, popin 80%
-        animation = border, 1, 10, default
-        animation = borderangle, 1, 8, default
-        animation = fade, 1, 7, default
-        animation = workspaces, 1, 6, default
-      }
-    '';
+    
 
     # LAYOUTS
     
@@ -89,7 +70,7 @@
     };
 
     misc = {
-      force_default_wallpaper = "-1";
+      force_default_wallpaper = "0";
     };
 
     # BINDS
@@ -150,4 +131,22 @@
       "$mod, mouse:273, resizewindow"
     ];
   };
+
+  wayland.windowManager.hyprland.extraConfig = ''
+    exec-once = swww init
+    exec-once = swww img /home/eden/.dotfiles/backgrounds/pink-clouds.png
+    exec-once = nm-applet --indicator
+    exec-once = waybar
+    exec-once = dunst
+    exec-once = discord
+
+    animations {
+      animation = windows, 1, 7, myBezier
+      animation = windowsOut, 1, 7, default, popin 80%
+      animation = border, 1, 10, default
+      animation = borderangle, 1, 8, default
+      animation = fade, 1, 7, default
+      animation = workspaces, 1, 6, default
+    }
+  '';
 }
