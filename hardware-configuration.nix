@@ -13,8 +13,9 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/dc81cebf-01e8-48dc-9fea-02fae24de357";
+  fileSystems."/" ={
+      #device = "/dev/disk/by-uuid/dc81cebf-01e8-48dc-9fea-02fae24de357";
+      device = "/dev/disk/by-label/NIXOS";
       fsType = "ext4";
     };
 
