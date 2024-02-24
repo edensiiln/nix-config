@@ -102,6 +102,7 @@
     tldr
     libqalculate
     ntfs3g
+    xorg.xhost
   ];
   
   users.users.eden = {
