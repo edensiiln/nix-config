@@ -1,27 +1,53 @@
 {
-  description = "starting flake";
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
+  description = "Siiln's flake";
+
   outputs = { self, nixpkgs, home-manager, ... }: 
     let
+      # ~~~ SYSTEM SETTINGS ~~~ #
+      systemSettings = {
+        system = "x86_64-linux";
+	hostname = "siiln";
+	machine = "desktop";
+	timezone = "America/New_York";
+	locale = "en_US.UTF-8";
+      };
+
       lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+
+      # ~~~ USER SETTINGS ~~~ #
+      userSettings = {
+        username = "eden";
+	name = "Eden";
+	#dotfilesDir = "~/.dotfiles";
+	#wm = "hyprland";
+	#browser = "floorp";
+	#term = "alacritty";
+	#editor = "neovim";
+      };
+
     in {
+
     nixosConfigurations = {
       nixos = lib.nixosSystem {
-       inherit system;
+       system = systemSettings.system;
        modules = [ ./configuration.nix ];
       };
     };
+
     homeConfigurations = {
       eden = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 	modules = [ ./home.nix ];
       };
     };
+
   };
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
 }

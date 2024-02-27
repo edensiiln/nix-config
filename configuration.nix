@@ -1,33 +1,39 @@
-{ config, pkgs, ... }:
+{ config, pkgs, systemSettings, userSettings, ... }:
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./grub.nix
+    #./hardware-configuration.nix
+    ( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
     #./x11.nix
     #./sway.nix
     ./hyprland/hyprland-system.nix
   ];
 
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/nvme0n1";
+    useOSProber = true;
+  };
+
   networking = {
-    hostName = "nixos";
+    hostName = systemSettings.hostname;
     networkmanager.enable = true;
     #proxy.default = "http://user:password@proxy:port/";
     #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
-  time.timeZone = "America/New_York";
-  i18n.defaultLocale = "en_US.UTF-8";
+  time.timeZone = systemSettings.timezone;
+  i18n.defaultLocale = systemSettings.locale;
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_ADDRESS = systemSettings.locale;
+    LC_IDENTIFICATION = systemSettings.locale;
+    LC_MEASUREMENT = systemSettings.locale;
+    LC_MONETARY = systemSettings.locale;
+    LC_NAME = systemSettings.locale;
+    LC_NUMERIC = systemSettings.locale;
+    LC_PAPER = systemSettings.locale;
+    LC_TELEPHONE = systemSettings.locale;
+    LC_TIME = systemSettings.locale;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -105,9 +111,9 @@
     xorg.xhost
   ];
   
-  users.users.eden = {
+  users.users.${userSettings.username} = {
     isNormalUser = true;
-    description = "eden";
+    description = userSettings.name;
     extraGroups = [ "networkmanager" "wheel" ];
     #shell = pkgs.nushell;
     packages = with pkgs; [];
