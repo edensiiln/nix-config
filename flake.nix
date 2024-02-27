@@ -6,7 +6,7 @@
       # ~~~ SYSTEM SETTINGS ~~~ #
       systemSettings = {
         system = "x86_64-linux";
-	hostname = "siiln";
+	hostname = "eden";
 	machine = "thinkpad";
 	timezone = "America/New_York";
 	locale = "en_US.UTF-8";
