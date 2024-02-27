@@ -9,7 +9,7 @@
     ./hyprland/hyprland-system.nix
   ];
 
-  boot.loader.grub = if (systemSetting.machine == "desktop") then {
+  boot.loader.grub = if (systemSettings.machine == "desktop") then {
     enable = true;
     device = "/dev/nvme0n1";
     useOSProber = true;
