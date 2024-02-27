@@ -2,8 +2,8 @@
 
 {
   imports = [
-    #./hardware-configuration.nix
-    ( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
+    ./machines/desktop/hardware-configuration.nix
+    #( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
     #./x11.nix
     #./sway.nix
     ./hyprland/hyprland-system.nix

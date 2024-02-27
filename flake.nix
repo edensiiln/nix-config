@@ -22,8 +22,8 @@
 	#dotfilesDir = "~/.dotfiles";
 	#wm = "hyprland";
 	#browser = "floorp";
-	#term = "alacritty";
-	#editor = "neovim";
+	term = "alacritty";
+	editor = "neovim";
       };
 
     in {
@@ -32,6 +32,10 @@
       nixos = lib.nixosSystem {
        system = systemSettings.system;
        modules = [ ./configuration.nix ];
+       specialArgs = {
+         inherit systemSettings;
+         inherit userSettings;
+       };
       };
     };
 
