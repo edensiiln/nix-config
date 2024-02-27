@@ -2,17 +2,20 @@
 
 {
   imports = [
-    ./machines/desktop/hardware-configuration.nix
-    #( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
+    #./machines/desktop/hardware-configuration.nix
+    ( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
     #./x11.nix
     #./sway.nix
     ./hyprland/hyprland-system.nix
   ];
 
-  boot.loader.grub = {
+  boot.loader.grub = if (systemSetting.machine == "desktop") then {
     enable = true;
     device = "/dev/nvme0n1";
     useOSProber = true;
+  }
+  else {
+    enable = false;
   };
 
   networking = {
