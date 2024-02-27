@@ -9,13 +9,16 @@
     ./hyprland/hyprland-system.nix
   ];
 
-  boot.loader.grub = if (systemSetting.machine == "desktop") then {
-    enable = true;
-    device = "/dev/nvme0n1";
-    useOSProber = true;
+  boot.loader = if (systemSetting.machine == "desktop") then {
+    grub = {
+      enable = true;
+      device = "/dev/nvme0n1";
+      useOSProber = true;
+    };
   }
   else {
-    enable = false;
+    systemd.boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
 
   networking = {
