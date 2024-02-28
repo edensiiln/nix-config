@@ -50,7 +50,7 @@
     in {
 
     nixosConfigurations = {
-      nixos = lib.nixosSystem {
+      eden = lib.nixosSystem {
        system = systemSettings.system;
        modules = [ ./configuration.nix ];
        specialArgs = {
