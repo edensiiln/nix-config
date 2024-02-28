@@ -6,7 +6,7 @@
     ( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
     #./x11.nix
     #./sway.nix
-    ./hyprland/hyprland-system.nix
+    ./system/hyprland.nix
   ];
 
   boot.loader = if (systemSettings.machine == "desktop") then {

@@ -2,7 +2,7 @@
 {
   imports = [
     ./sh.nix
-    ./hyprland/hyprland-home.nix
+    ./home/hyprland.nix
   ];
 
   programs.home-manager.enable = true;
@@ -48,7 +48,7 @@
   };
 
   home.packages = with pkgs; [
-    polybar
+    #polybar
     headsetcontrol
     firefox
     floorp
