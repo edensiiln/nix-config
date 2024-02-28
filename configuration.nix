@@ -130,6 +130,8 @@
     
   ];
 
+  programs.ssh.startAgent = true;
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
