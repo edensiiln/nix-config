@@ -141,7 +141,7 @@
   #services.flatpak.enable = true;
 
   # OpenSSH daemon
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Firewall
   # networking.firewall.allowedTCPPorts = [ ... ];
