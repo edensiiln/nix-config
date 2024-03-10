@@ -82,7 +82,8 @@
       "$mod, RETURN, exec, alacritty"
       "$mod, D, exec, wofi --show drun"
       "$mod, F, exec, thunar"
-      
+      "$mod, SPACE, exec, cliphist list | wofi --show dmenu -H 600 -W 900   | cliphist decode | wl-copy"
+
       # window management
       "$mod SHIFT, Q, killactive"
       "$mod, M, exit"
@@ -138,6 +139,9 @@
     exec-once = nm-applet --indicator
     exec-once = waybar
     exec-once = dunst
+    exec-once = wl-clipboard-history -t
+    exec-once = wl-paste --watch cliphist store
+    exec-once = rm "$HOME/.cache/cliphist/db"
     exec-once = discord
 
     animations {

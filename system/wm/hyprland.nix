@@ -62,6 +62,8 @@
     swww # wallpaper daemon
     wofi
     rofi-wayland
+    wl-clipboard
+    cliphist
     grim # screenshots
     slurp # screenshots
     networkmanagerapplet

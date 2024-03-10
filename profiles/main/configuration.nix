@@ -1,32 +1,13 @@
-{ config, pkgs, systemSettings, userSettings, ... }:
-
+{ pkgs, lib, systemSettings, userSettings, ... }:
 {
   imports = [
-    #./machines/desktop/hardware-configuration.nix
-    ( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
-    #./x11.nix
-    #./sway.nix
-    ./system/wm/hyprland.nix
+    ../../machines/desktop/hardware-configuration.nix
+    ../../machines/desktop/boot.nix
+    ../../system/wm/hyprland.nix
+    ../../system/bluetooth.nix
+    ../../system/sound.nix
+    ../../system/steam.nix
   ];
-
-  boot.loader = if (systemSettings.machine == "desktop") then {
-    grub = {
-      enable = true;
-      device = "/dev/nvme0n1";
-      useOSProber = true;
-    };
-  }
-  else {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-
-  networking = {
-    hostName = systemSettings.hostname;
-    networkmanager.enable = true;
-    #proxy.default = "http://user:password@proxy:port/";
-    #proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  };
 
   time.timeZone = systemSettings.timezone;
   i18n.defaultLocale = systemSettings.locale;
@@ -71,23 +52,6 @@
     })
   '';
 
-  # Sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
-  # Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-
   # Shells
   #environment.shells = with pkgs; [ zsh nushell ];
   #users.defaultUserShell = pkgs.zsh;
@@ -131,12 +95,6 @@
   ];
 
   programs.ssh.startAgent = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
 
   #xdg.portal.enable = true;
 

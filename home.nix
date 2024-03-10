@@ -53,6 +53,7 @@
     firefox
     floorp
     discord
+    webcord
     obsidian
     github-desktop
     godot_4
