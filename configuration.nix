@@ -106,6 +106,7 @@
     btop
     neofetch
     ranger
+    lf
     rustup
     rustc
     cargo

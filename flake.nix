@@ -7,7 +7,7 @@
       systemSettings = {
         system = "x86_64-linux";
 	hostname = "eden";
-	machine = "desktop"; # desktop, thinkpad, homelab
+	machine = "thinkpad"; # desktop, thinkpad, homelab
 	timezone = "America/New_York";
 	locale = "en_US.UTF-8";
 
