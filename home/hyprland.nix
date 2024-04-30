@@ -82,6 +82,7 @@
       "$mod, RETURN, exec, alacritty"
       "$mod, D, exec, wofi --show drun"
       "$mod, F, exec, thunar"
+      "$mod, B, exec, floorp"
       "$mod, SPACE, exec, cliphist list | wofi --show dmenu -H 600 -W 900   | cliphist decode | wl-copy"
 
       # window management

@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{config, pkgs, systemSettings, ... }:
 {
   networking = {
     hostName = systemSettings.hostname;

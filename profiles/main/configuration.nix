@@ -5,6 +5,7 @@
     ../../machines/desktop/boot.nix
     ../../system/wm/hyprland.nix
     ../../system/bluetooth.nix
+    ../../system/networking.nix
     ../../system/sound.nix
     ../../system/steam.nix
   ];
@@ -79,6 +80,10 @@
     libqalculate
     ntfs3g
     xorg.xhost
+  ];
+
+  fonts.packages = with pkgs; [
+   nerdfonts 
   ];
   
   users.users.${userSettings.username} = {

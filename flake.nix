@@ -7,6 +7,7 @@
       systemSettings = {
         system = "x86_64-linux";
 	hostname = "eden";
+	profile = "main"; # main
 	machine = "desktop"; # desktop, thinkpad, homelab
 	timezone = "America/New_York";
 	locale = "en_US.UTF-8";
@@ -52,7 +53,7 @@
     nixosConfigurations = {
       eden = lib.nixosSystem {
        system = systemSettings.system;
-       modules = [ ./configuration.nix ];
+       modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/configuration.nix") ];
        specialArgs = {
          inherit systemSettings;
          inherit userSettings;
