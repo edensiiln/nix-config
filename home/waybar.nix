@@ -5,7 +5,9 @@
       position = "top";
       height = 30;
 
-      modules-left = [];
+      modules-left = [ "hyprland/window" ];
+      modules-center = [];
+      modules-right = [];
     };
   };
 }
