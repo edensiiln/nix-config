@@ -138,7 +138,6 @@
     exec-once = swww init
     exec-once = swww img /home/eden/.dotfiles/backgrounds/pink-clouds.png
     exec-once = nm-applet --indicator
-    exec-once = waybar
     exec-once = dunst
     exec-once = wl-clipboard-history -t
     exec-once = wl-paste --watch cliphist store

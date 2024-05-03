@@ -3,6 +3,7 @@
   imports = [
     ./sh.nix
     ./home/hyprland.nix
+    ./home/waybar.nix
   ];
 
   programs.home-manager.enable = true;
