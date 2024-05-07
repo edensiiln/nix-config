@@ -1,3 +1,5 @@
+{ config, pkgs, lib, ... }:
+
 {
   programs.waybar = {
     enable = true;
@@ -11,9 +13,28 @@
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
+	  "tray"
           "pulseaudio"
+	  "battery"
+	  "clock"
 	];
+	pulseaudio = {
+          on-click = "pavucontrol";
+	};
+	clock = {
+          format = "{:%H:%M%n%m/%d}";
+	  tooltip-format = "{:%c}";
+	};
       };
     };
+    style = ''
+      * {
+          border: none;
+	  border-radius: 0;
+          font-size: 12px;
+	  margin: 0px;
+	  padding: 0 4px;
+      }
+    '';
   };
 }
