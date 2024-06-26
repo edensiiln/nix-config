@@ -71,6 +71,7 @@
     z-lua
     gparted
     pavucontrol
+    pragha
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
