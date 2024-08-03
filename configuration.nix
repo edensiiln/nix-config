@@ -10,6 +10,7 @@
   ];
 
   boot.loader = if (systemSettings.machine == "desktop") then {
+    lib.warn "using grub"
     grub = {
       enable = true;
       device = "/dev/nvme0n1";
@@ -17,6 +18,7 @@
     };
   }
   else {
+    lib.warn "using systemd-boot"
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
