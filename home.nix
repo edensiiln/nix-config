@@ -53,6 +53,7 @@
     headsetcontrol
     firefox
     floorp
+    libreoffice
     discord
     webcord
     obsidian
