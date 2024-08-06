@@ -82,6 +82,8 @@
     ntfs3g
     xorg.xhost
   ];
+  
+  hardware.opengl.enable = true;
 
   fonts.packages = with pkgs; [
    nerdfonts 
