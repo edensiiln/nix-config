@@ -118,6 +118,8 @@
     libqalculate
     ntfs3g
     xorg.xhost
+    docker
+    python3
   ];
   
   users.users.${userSettings.username} = {

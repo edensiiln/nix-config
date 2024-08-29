@@ -73,6 +73,7 @@
     gparted
     pavucontrol
     pragha
+    sxiv
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
