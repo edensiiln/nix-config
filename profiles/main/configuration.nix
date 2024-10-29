@@ -81,10 +81,11 @@
     libqalculate
     ntfs3g
     xorg.xhost
+    docker
   ];
 
   fonts.packages = with pkgs; [
-   nerdfonts 
+   nerdfonts
   ];
   
   users.users.${userSettings.username} = {

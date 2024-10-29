@@ -5,33 +5,34 @@
     let
       # ~~~ SYSTEM SETTINGS ~~~ #
       systemSettings = {
+	
+	#desktop = {
+        #  system = "x86_64-linux";
+	#  hostname = "eden";
+        #  timezone = "America/Chicago";
+        #  locale = "en_US.UTF-8";
+	#};
+
+	#thinkpad = {
+        #  system = "x86_64-linux";
+	#  hostname = "eden";
+        #  timezone = "America/Chicago";
+        #  locale = "en_US.UTF-8";
+	#};
+	
+	#homelab = {
+        #  system = "x86_64-linux";
+      	#  hostname = "eden";
+        #  timezone = "America/Chicago";
+        #  locale = "en_US.UTF-8";
+	#};
+      
         system = "x86_64-linux";
 	hostname = "eden";
 	profile = "main"; # main
 	machine = "desktop"; # desktop, thinkpad, homelab
-	timezone = "America/New_York";
+	timezone = "America/Chicago";
 	locale = "en_US.UTF-8";
-
-	pc = {
-          system = "x86_64-linux";
-	  hostname = "eden";
-          timezone = "America/New_York";
-          locale = "en_US.UTF-8";
-	};
-
-	thinkpad = {
-          system = "x86_64-linux";
-	  hostname = "eden";
-          timezone = "America/New_York";
-          locale = "en_US.UTF-8";
-	};
-	
-	homelab = {
-          system = "x86_64-linux";
-	  hostname = "eden";
-          timezone = "America/New_York";
-          locale = "en_US.UTF-8";
-	};
       };
 
       lib = nixpkgs.lib;
@@ -45,7 +46,7 @@
 	#wm = "hyprland";
 	#browser = "floorp";
 	term = "alacritty";
-	editor = "neovim";
+	editor = "nvim";
       };
 
     in {
@@ -64,7 +65,12 @@
     homeConfigurations = {
       eden = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-	modules = [ ./home.nix ];
+	extraSpecialArgs = {
+  	  inherit systemSettings;
+          inherit userSettings;
+	};
+	#modules = [ ./home.nix ];
+        modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];
       };
     };
 
