@@ -80,6 +80,11 @@
     nixpkgs.url = "nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    
+    nixvim = {
+      url = "github:dc-tec/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 }

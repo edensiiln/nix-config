@@ -74,6 +74,7 @@
     pavucontrol
     pragha
     sxiv
+    wlr-randr
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -111,6 +112,7 @@
     CARGO_MOMMYS_ROLES = "Director/Handler/Mx./Mx. Diana";
     CARGO_MOMMYS_PRONOUNS = "her";
     CARGO_MOMMYS_LITTLE = "Weapon/Asset/Knife/doll";
+    CARGO_MOMMYS_MOODS = "ominous";
   };
 
   

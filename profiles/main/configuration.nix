@@ -83,6 +83,7 @@
     xorg.xhost
     docker
   ];
+  #++ nixvim.packages.x86_64-linux.default;
 
   fonts.packages = with pkgs; [
    nerdfonts
