@@ -1,10 +1,10 @@
 { pkgs, lib, systemSettings, userSettings, ... }:
 {
   imports = [
-    #../../machines/desktop/hardware-configuration.nix
-    #../../machines/desktop/boot.nix
-    ../../machines/thinkpad/hardware-configuration.nix
-    ../../machines/thinkpad/boot.nix
+    ../../machines/desktop/hardware-configuration.nix
+    ../../machines/desktop/boot.nix
+    #../../machines/thinkpad/hardware-configuration.nix
+    #../../machines/thinkpad/boot.nix
     ../../system/wm/hyprland.nix
     ../../system/bluetooth.nix
     ../../system/networking.nix

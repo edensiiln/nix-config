@@ -135,7 +135,7 @@
   };
 
   wayland.windowManager.hyprland.extraConfig = ''
-    exec-once = wlr-randr --output DP-1 --transform 90 --pos 0,-390 --output HDMI-A-1 --pos 1080,0 --output DP-3 --pos 3000,0
+    exec-once = wlr-randr --output DP-1 --transform 90 --pos 0,-808 --output HDMI-A-1 --pos 1080,0 --output DP-3 --pos 3000,0
     exec-once = swww init
     exec-once = swww img /home/eden/.dotfiles/backgrounds/pink-clouds.png
     exec-once = nm-applet --indicator
