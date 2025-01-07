@@ -20,17 +20,17 @@
         #  locale = "en_US.UTF-8";
 	#};
 	
-	#homelab = {
-        #  system = "x86_64-linux";
-      	#  hostname = "eden";
-        #  timezone = "America/Chicago";
-        #  locale = "en_US.UTF-8";
-	#};
+	homelab = {
+          system = "x86_64-linux";
+      	  hostname = "arkserver";
+          timezone = "America/Chicago";
+          locale = "en_US.UTF-8";
+	};
       
         system = "x86_64-linux";
 	hostname = "eden";
-	profile = "main"; # main
-	machine = "thinkpad"; # desktop, thinkpad, homelab
+	profile = "main"; # main, homelab, laptop
+	machine = "desktop"; # desktop, thinkpad, arkserver
 	timezone = "America/Chicago";
 	locale = "en_US.UTF-8";
       };
@@ -54,6 +54,7 @@
     nixosConfigurations = {
       eden = lib.nixosSystem {
        system = systemSettings.system;
+       #modules = [ ./configuration.nix ];
        modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/configuration.nix") ];
        specialArgs = {
          inherit systemSettings;

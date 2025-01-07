@@ -1,13 +1,7 @@
-{ config, pkgs, systemSettings, userSettings, ... }:
-
+{ pkgs, lib, systemSettings, userSettings, ... }:
 {
   imports = [
-    ( ./. + "/machines"+("/"+systemSettings.machine)+"/boot.nix")
-    ( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
-    #../../system/bluetooth.nix
-    #../../system/networking.nix
-    #../../system/sound.nix
-    #../../system/steam.nix
+    ../../system/networking.nix
   ];
 
   time.timeZone = systemSettings.timezone;
@@ -60,31 +54,20 @@
   #programs.nushell.enable = true;
 
   environment.systemPackages = with pkgs; [
-
-    # text editors
     vim
     neovim
-    
-    # git
+    wget
     git
     gitui
-    
-    # terminal
     starship
     nushell
     zellij
     btop
     neofetch
     ranger
-    lf
-
-    # rust
     rustup
     rustc
     cargo
-
-    # tools
-    wget
     unzip
     man
     tldr
@@ -92,6 +75,11 @@
     ntfs3g
     xorg.xhost
     docker
+  ];
+  #++ nixvim.packages.x86_64-linux.default;
+
+  fonts.packages = with pkgs; [
+   nerdfonts
   ];
   
   users.users.${userSettings.username} = {
@@ -108,13 +96,6 @@
   ];
 
   programs.ssh.startAgent = true;
-
-  programs.nixvim = {
-    enable = true;
-
-    colorschemes.catppuccin.enable = true;
-    plugins.lualine.enable = true;
-  };
 
   #xdg.portal.enable = true;
 
