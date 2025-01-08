@@ -124,12 +124,14 @@
         modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];
       };
     } else if systemSettings.profile == "homelab" then {
-      arkserver = {
+      arkserver = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 	extraSpecialArgs = {
           systemSettings = (systemSettings // systemSettings.homelab);
           userSettings = (userSettings // userSettings.homelab);
 	};
+	#modules = [ ./home.nix ];
+        modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];
       };
     } else
       abort "systemSettings.profile is invalid";
