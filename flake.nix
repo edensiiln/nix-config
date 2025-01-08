@@ -6,19 +6,19 @@
       # ~~~ SYSTEM SETTINGS ~~~ #
       systemSettings = {
 	
-	#desktop = {
-        #  system = "x86_64-linux";
-	#  hostname = "eden";
-        #  timezone = "America/Chicago";
-        #  locale = "en_US.UTF-8";
-	#};
+	desktop = {
+          system = "x86_64-linux";
+	  hostname = "eden";
+          timezone = "America/Chicago";
+          locale = "en_US.UTF-8";
+	};
 
-	#thinkpad = {
-        #  system = "x86_64-linux";
-	#  hostname = "eden";
-        #  timezone = "America/Chicago";
-        #  locale = "en_US.UTF-8";
-	#};
+	thinkpad = {
+          system = "x86_64-linux";
+	  hostname = "eden";
+          timezone = "America/Chicago";
+          locale = "en_US.UTF-8";
+	};
 	
 	homelab = {
           system = "x86_64-linux";
@@ -26,11 +26,12 @@
           timezone = "America/Chicago";
           locale = "en_US.UTF-8";
 	};
-      
+
+ 	profile = "homelab"; # main, homelab, laptop
+	machine = "arkserver"; # desktop, thinkpad, arkserver
+
         system = "x86_64-linux";
 	hostname = "eden";
-	profile = "main"; # main, homelab, laptop
-	machine = "desktop"; # desktop, thinkpad, arkserver
 	timezone = "America/Chicago";
 	locale = "en_US.UTF-8";
       };
@@ -47,21 +48,59 @@
 	#browser = "floorp";
 	term = "alacritty";
 	editor = "nvim";
+
+	homelab = {
+          username = "arkserver";
+	  name = "arkserver";
+	};
       };
 
     in {
 
-    nixosConfigurations = {
+    nixosConfigurations = 
+    if systemSettings.profile == "main" then {
       eden = lib.nixosSystem {
-       system = systemSettings.system;
-       #modules = [ ./configuration.nix ];
-       modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/configuration.nix") ];
-       specialArgs = {
-         inherit systemSettings;
-         inherit userSettings;
-       };
+        system = "x86_64-linux";
+        modules = [ ./profiles/main/configuration.nix ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
       };
-    };
+    } else if systemSettings.profile == "laptop" then {
+      eden = lib.nixosSystem {
+        system = "x86_64-linux";
+	modules = [ ./profiles/main/configuration.nix ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
+      };
+    } else if systemSettings.profile == "homelab" then {
+      arkserver = lib.nixosSystem {
+        system = "x86_64-linux";
+	modules = [ ./profiles/homelab/configuration.nix ];
+        specialArgs = {
+          systemSettings = (systemSettings // systemSettings.homelab);
+          userSettings = (userSettings // userSettings.homelab);
+	};
+      };
+    } else
+      abort "systemSettings.profile is invalid";
+
+    #nixosConfigurations = {
+    #  eden = lib.nixosSystem {
+    #    system = systemSettings.system;
+    #    #modules = [ ./configuration.nix ];
+    #    modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/configuration.nix") ];
+    #    specialArgs = {
+    #      #inherit SystemSettings;
+    #      systemSettings == (systemSettings // systemSettings.profile);
+    #      #inherit userSettings;
+    #      userSettings == (userSettings // userSettings.profile);
+    #    };
+    #  };
+    #};
 
     homeConfigurations = {
       eden = home-manager.lib.homeManagerConfiguration {
@@ -82,6 +121,8 @@
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
+    mms.url = "github:mkaito/nixos-modded-minecraft-servers";
+
     nixvim = {
       url = "github:dc-tec/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";

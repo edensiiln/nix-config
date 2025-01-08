@@ -1,7 +1,10 @@
 { pkgs, lib, systemSettings, userSettings, ... }:
 {
   imports = [
+    ../../machines/arkserver/hardware-configuration.nix
+    ../../machines/arkserver/boot.nix
     ../../system/networking.nix
+    #../../programs/minecraft-servers.nix
   ];
 
   time.timeZone = systemSettings.timezone;
