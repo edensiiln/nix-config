@@ -102,7 +102,8 @@
     #  };
     #};
 
-    homeConfigurations = {
+    homeConfigurations =
+    if systemSettings.profile == "main" then {
       eden = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 	extraSpecialArgs = {
@@ -112,16 +113,40 @@
 	#modules = [ ./home.nix ];
         modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];
       };
-    };
+    } else if systemSettings.profile == "laptop" then {
+      eden = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+	extraSpecialArgs = {
+  	  inherit systemSettings;
+          inherit userSettings;
+	};
+	#modules = [ ./home.nix ];
+        modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];
+      };
+    } else if systemSettings.profile == "homelab" then {
+      arkserver = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+	extraSpecialArgs = {
+          systemSettings = (systemSettings // systemSettings.homelab);
+          userSettings = (userSettings // userSettings.homelab);
+	};
+	#modules = [ ./home.nix ];
+        modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];
+      };
+    } else
+      abort "systemSettings.profile is invalid";
 
   };
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
-    mms.url = "github:mkaito/nixos-modded-minecraft-servers";
+    minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
 
     nixvim = {
       url = "github:dc-tec/nixvim";

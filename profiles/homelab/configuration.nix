@@ -1,10 +1,11 @@
-{ pkgs, lib, systemSettings, userSettings, ... }:
+{ pkgs, lib, systemSettings, userSettings, inputs, ... }:
 {
   imports = [
     ../../machines/arkserver/hardware-configuration.nix
     ../../machines/arkserver/boot.nix
     ../../system/networking.nix
     #../../programs/minecraft-servers.nix
+    #inputs.mms.module
   ];
 
   time.timeZone = systemSettings.timezone;

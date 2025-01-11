@@ -1,10 +1,13 @@
 { pkgs, lib, inputs, ... }:
 let
+  #minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
+
   jre8 = pkgs.temurin-bin-8;
   jre17 = pkgs.temurin-bin-17;
 in
 {
-  imports = [ inputs.mms.module ];
+  #imports = [ minecraft-servers.module ];
+  imports = [ inputs.minecraft-servers.module ];
 
   services.modded-minecraft-servers = {
     eula = true;
