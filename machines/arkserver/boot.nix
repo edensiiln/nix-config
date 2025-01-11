@@ -1,10 +1,7 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 {
   boot.loader = {
-    grub = {
-      enable = true;
-      device = "/dev/sda";
-      useOSProber = true;
-    };
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
 }
