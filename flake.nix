@@ -1,7 +1,23 @@
 {
   description = "Siiln's flake";
+  
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-23.11";
 
-  outputs = { self, nixpkgs, home-manager, ... }: 
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
+
+    nixvim = {
+      url = "github:dc-tec/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
     let
       # ~~~ SYSTEM SETTINGS ~~~ #
       systemSettings = {
@@ -27,8 +43,8 @@
           locale = "en_US.UTF-8";
 	};
 
- 	profile = "main"; # main, homelab, laptop
-	machine = "desktop"; # desktop, thinkpad, arkserver
+ 	profile = "homelab"; # main, homelab, laptop
+	machine = "arkserver"; # desktop, thinkpad, arkserver
 
         system = "x86_64-linux";
 	hostname = "eden";
@@ -65,6 +81,7 @@
         specialArgs = {
           inherit systemSettings;
           inherit userSettings;
+	  inherit inputs;
         };
       };
     } else if systemSettings.profile == "laptop" then {
@@ -74,6 +91,7 @@
         specialArgs = {
           inherit systemSettings;
           inherit userSettings;
+	  inherit inputs;
         };
       };
     } else if systemSettings.profile == "homelab" then {
@@ -83,6 +101,7 @@
         specialArgs = {
           systemSettings = (systemSettings // systemSettings.homelab);
           userSettings = (userSettings // userSettings.homelab);
+	  inherit inputs;
 	};
       };
     } else
@@ -135,23 +154,6 @@
       };
     } else
       abort "systemSettings.profile is invalid";
-
-  };
-
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    
-    minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
-
-    nixvim = {
-      url = "github:dc-tec/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
 }

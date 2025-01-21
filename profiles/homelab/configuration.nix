@@ -1,26 +1,12 @@
-{ pkgs, lib, systemSettings, userSettings, inputs, ... }:
+{ pkgs, lib, userSettings, inputs, ... }:
 {
   imports = [
     ../../machines/arkserver/hardware-configuration.nix
     ../../machines/arkserver/boot.nix
     ../../system/networking.nix
-    #../../programs/minecraft-servers.nix
-    #inputs.mms.module
+    ../../system/locale.nix
+    ../../programs/minecraft-servers.nix
   ];
-
-  time.timeZone = systemSettings.timezone;
-  i18n.defaultLocale = systemSettings.locale;
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = systemSettings.locale;
-    LC_IDENTIFICATION = systemSettings.locale;
-    LC_MEASUREMENT = systemSettings.locale;
-    LC_MONETARY = systemSettings.locale;
-    LC_NAME = systemSettings.locale;
-    LC_NUMERIC = systemSettings.locale;
-    LC_PAPER = systemSettings.locale;
-    LC_TELEPHONE = systemSettings.locale;
-    LC_TIME = systemSettings.locale;
-  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -51,12 +37,6 @@
     })
   '';
 
-  # Shells
-  #environment.shells = with pkgs; [ zsh nushell ];
-  #users.defaultUserShell = pkgs.zsh;
-  #programs.zsh.enable = true;
-  #programs.nushell.enable = true;
-
   environment.systemPackages = with pkgs; [
     vim
     neovim
@@ -79,8 +59,8 @@
     ntfs3g
     xorg.xhost
     docker
+    godns
   ];
-  #++ nixvim.packages.x86_64-linux.default;
 
   fonts.packages = with pkgs; [
    nerdfonts
