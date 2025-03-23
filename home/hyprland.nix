@@ -83,6 +83,7 @@
       "$mod, D, exec, wofi --show drun"
       "$mod, F, exec, thunar"
       "$mod, B, exec, floorp"
+      "$mod, O, exec, obsidian"
       "$mod, SPACE, exec, cliphist list | wofi --show dmenu -H 600 -W 900   | cliphist decode | wl-copy"
 
       # window management
@@ -136,8 +137,7 @@
 
   wayland.windowManager.hyprland.extraConfig = ''
     exec-once = wlr-randr --output DP-1 --transform 90 --pos 0,-808 --output HDMI-A-1 --pos 1080,0 --output DP-3 --pos 3000,0
-    exec-once = swww init
-    exec-once = swww img /home/eden/.dotfiles/backgrounds/pink-clouds.png
+    exec-once = hyprpaper --config /home/eden/.dotfiles/.config/hyprpaper.conf
     exec-once = nm-applet --indicator
     exec-once = dunst
     exec-once = wl-clipboard-history -t

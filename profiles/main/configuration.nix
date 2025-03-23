@@ -42,8 +42,8 @@
 
   # Shells
   #environment.shells = with pkgs; [ zsh nushell ];
-  #users.defaultUserShell = pkgs.zsh;
-  #programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
   #programs.nushell.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -68,6 +68,7 @@
     ntfs3g
     xorg.xhost
     docker
+    prismlauncher
   ];
   #++ nixvim.packages.x86_64-linux.default;
 

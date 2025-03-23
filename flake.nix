@@ -3,14 +3,13 @@
   
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    nix-colors.url = "github:misterio77/nix-colors";
     minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
-
     nixvim = {
       url = "github:dc-tec/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,8 +42,8 @@
           locale = "en_US.UTF-8";
 	};
 
- 	profile = "homelab"; # main, homelab, laptop
-	machine = "arkserver"; # desktop, thinkpad, arkserver
+ 	profile = "main"; # main, homelab, laptop
+	machine = "desktop"; # desktop, thinkpad, arkserver
 
         system = "x86_64-linux";
 	hostname = "eden";
@@ -128,6 +127,7 @@
 	extraSpecialArgs = {
   	  inherit systemSettings;
           inherit userSettings;
+	  inherit inputs;
 	};
 	#modules = [ ./home.nix ];
         modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];
@@ -138,6 +138,7 @@
 	extraSpecialArgs = {
   	  inherit systemSettings;
           inherit userSettings;
+	  inherit inputs;
 	};
 	#modules = [ ./home.nix ];
         modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];
@@ -148,6 +149,7 @@
 	extraSpecialArgs = {
           systemSettings = (systemSettings // systemSettings.homelab);
           userSettings = (userSettings // userSettings.homelab);
+	  inherit inputs;
 	};
 	#modules = [ ./home.nix ];
         modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix") ];

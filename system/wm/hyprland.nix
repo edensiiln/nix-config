@@ -52,14 +52,28 @@
 
   hardware = {
     opengl.enable = true;
-    nvidia.modesetting.enable = true;
+    #graphics.enable = true;
+
+    nvidia = {
+      modesetting.enable = true;
+
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+
+      open = false;
+
+      nvidiaSettings = true;
+
+      #package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
   };
 
   environment.systemPackages = with pkgs; [
     waybar # status bar
     mako # notification daemon
     libnotify
-    swww # wallpaper daemon
+    #swww # wallpaper daemon
+    hyprpaper #wallpaper daemon
     wofi
     rofi-wayland
     wl-clipboard

@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
     ../../sh.nix
     ../../home/hyprland.nix
     ../../home/waybar.nix
+    inputs.nix-colors.homeManagerModules.default
+    ../../features/alacritty.nix
   ];
 
   programs.home-manager.enable = true;
@@ -14,39 +16,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  colorscheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
+
   # Terminal Emulators
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      shell = "nu";
-      colors = {
-        primary = {
-          foreground = "#a9b1d6";
-          background = "#1a1b26";
-        };
-	normal = {
-	  black = "#32344a";
-	  red = "#f7768e";
-	  green = "#9ece6a";
-	  yellow = "#e0af68";
-	  blue = "#7aa2f7";
-	  magenta = "#ad8ee6";
-	  cyan = "#449dab";
-	  white = "#787c99";
-	};
-	bright = {
-	  black = "#444b6a";
-	  red = "#ff7a93";
-	  green = "#b9f27c";
-	  yellow = "#ff9e64";
-	  blue = "#7da6ff";
-	  magenta = "#bb9af7";
-	  cyan = "#0db9d7";
-	  white = "#acb0d0";
-	};
-      };
-    };
-  };
 
   home.packages = with pkgs; [
     #polybar
@@ -94,10 +66,10 @@
     # '';
   };
 
-  home.file.".config/ranger/rc.conf".source = ../../ranger/rc.conf;
-  home.file.".config/ranger/rifle.conf".source = ../../ranger/rifle.conf;
+  home.file.".config/ranger/rc.conf".source = ../../.config/ranger/rc.conf;
+  home.file.".config/ranger/rifle.conf".source = ../../.config/ranger/rifle.conf;
   home.file.".config/ranger/scope.sh" = {
-    source = ../../ranger/scope.sh;
+    source = ../../.config/ranger/scope.sh;
     executable = true;
   };
   
