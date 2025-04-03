@@ -73,7 +73,12 @@
   #++ nixvim.packages.x86_64-linux.default;
 
   fonts.packages = with pkgs; [
-   nerdfonts
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.symbols-only
+    font-awesome
+    powerline-fonts
+    powerline-symbols
   ];
   
   users.users.${userSettings.username} = {

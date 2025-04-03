@@ -1,11 +1,15 @@
 { config, pkgs, inputs, ... }:
 {
   imports = [
-    ../../sh.nix
+    ../../home/alacritty.nix
     ../../home/hyprland.nix
+    ../../home/kanshi.nix
+    ../../home/sh.nix
     ../../home/waybar.nix
-    inputs.nix-colors.homeManagerModules.default
-    ../../features/alacritty.nix
+
+    #inputs.nix-colors.homeManagerModules.default
+    
+    #../../themes/${extraSpecialArgs.userSettings.theme}.nix
   ];
 
   programs.home-manager.enable = true;
@@ -16,7 +20,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  colorscheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
+  #colorscheme = inputs.nix-colors.colorSchemes.tokyo-night;
+  #colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  #colorscheme = theme.colorscheme;
 
   # Terminal Emulators
 
@@ -44,6 +50,7 @@
     z-lua
     gparted
     pavucontrol
+    pamixer
     pragha
     sxiv
     wlr-randr

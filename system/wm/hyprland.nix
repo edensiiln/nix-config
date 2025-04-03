@@ -13,9 +13,10 @@
 {
   programs.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
     xwayland.enable = true;
   };
+
+  services.xserver.videoDrivers = ["nvidia"];
 
   services.greetd = {
     enable = true;
@@ -51,8 +52,9 @@
   };
 
   hardware = {
-    opengl.enable = true;
-    #graphics.enable = true;
+    #opengl.enable = true;
+    graphics.enable = true;
+    
 
     nvidia = {
       modesetting.enable = true;
@@ -65,6 +67,7 @@
       nvidiaSettings = true;
 
       #package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 

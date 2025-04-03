@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       #shell = "nu";
-      colors = with config.colorscheme.colors; {
+      colors = with config.colorscheme.palette; {
         primary = {
           foreground = "0x${base06}";
           background = "0x${base00}";

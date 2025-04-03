@@ -42,10 +42,10 @@
 	passes = "1";
       };
 
-      drop_shadow = "yes";
-      shadow_range = "4";
-      shadow_render_power = "3";
-      "col.shadow" = "rgba(1a1a1aee)";
+      #drop_shadow = "yes";
+      #shadow_range = "4";
+      #shadow_render_power = "3";
+      #"col.shadow" = "rgba(1a1a1aee)";
     };
 
     animations = {
@@ -61,9 +61,9 @@
       preserve_split = true;
     };
     
-    master = {
-      new_is_master = true;
-    };
+    #master = {
+    #  new_is_master = true;
+    #};
 
     gestures = {
       workspace_swipe = "off";
@@ -133,10 +133,18 @@
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
     ];
+
+    windowrule = [
+      #"float, class:^(org.pulseaudio.pavucontrol)$"
+      "float, org.pulseaudio.pavucontrol"
+    ];
   };
 
+  
+
   wayland.windowManager.hyprland.extraConfig = ''
-    exec-once = wlr-randr --output DP-1 --transform 90 --pos 0,-808 --output HDMI-A-1 --pos 1080,0 --output DP-3 --pos 3000,0
+    #exec-once = wlr-randr --output DP-1 --transform 90 --pos 0,0 --output HDMI-A-1 --pos 1080,840 --output DP-3 --pos 3000,840
+    exec-once = kanshi
     exec-once = hyprpaper --config /home/eden/.dotfiles/.config/hyprpaper.conf
     exec-once = nm-applet --indicator
     exec-once = dunst
