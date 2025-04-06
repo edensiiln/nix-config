@@ -40,10 +40,10 @@
     alacritty
     kitty
     xfce.thunar
-    rofi
+    #rofi
     mpv
     vlc
-    maim
+    #maim
     yt-dlp
     cargo-mommy
     bat
@@ -54,6 +54,8 @@
     pragha
     sxiv
     wlr-randr
+    imagemagick
+    swappy
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

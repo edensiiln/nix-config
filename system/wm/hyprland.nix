@@ -75,8 +75,7 @@
     waybar # status bar
     mako # notification daemon
     libnotify
-    #swww # wallpaper daemon
-    hyprpaper #wallpaper daemon
+    hyprpaper # wallpaper daemon
     wofi
     rofi-wayland
     wl-clipboard

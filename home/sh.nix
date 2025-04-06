@@ -53,4 +53,13 @@ in
     settings = {
     };
   };
+
+  # Zoxide
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+    options = ["--cmd cd"];
+  };
 }

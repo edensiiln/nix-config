@@ -76,6 +76,7 @@
     # BINDS
 
     "$mod" = "SUPER";
+    "$prtsc" = "code:107";
 
     bind = [
       # exec binds
@@ -85,6 +86,17 @@
       "$mod, B, exec, floorp"
       "$mod, O, exec, obsidian"
       "$mod, SPACE, exec, cliphist list | wofi --show dmenu -H 600 -W 900   | cliphist decode | wl-copy"
+
+      # PRINTSCREEN
+      # selection to clipboard
+      ", $prtsc, exec, grim -g \"$(slurp)\" - | wl-copy"
+      # selection to image editor
+      "CTRL, $prtsc, exec, grim -g \"$(slurp)\" - | swappy -f -"
+
+      # active monitor to clipboard
+      "SHIFT, $prtsc, exec, grim -o \"$(hyprctl monitors | awk '/Monitor/{mon=$2} /focused: yes/{print mon}')\" - | wl-copy"
+      # active monitor to image editor
+      "SHIFT CTRL, $prtsc, exec, grim -o \"$(hyprctl monitors | awk '/Monitor/{mon=$2} /focused: yes/{print mon}')\" - | swappy -f -"
 
       # window management
       "$mod SHIFT, Q, killactive"
