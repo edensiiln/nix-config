@@ -4,6 +4,7 @@
     ../../home/alacritty.nix
     ../../home/hyprland.nix
     ../../home/kanshi.nix
+    ../../home/nvf.nix
     ../../home/sh.nix
     ../../home/waybar.nix
 

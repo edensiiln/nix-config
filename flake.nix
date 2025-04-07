@@ -2,6 +2,7 @@
   description = "Siiln's flake";
   
   inputs = {
+
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -9,56 +10,50 @@
     };
     
     nix-colors.url = "github:misterio77/nix-colors";
-    minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
-    nixvim = {
-      url = "github:dc-tec/nixvim";
+    nvf = {
+      url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
+    
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, nvf, ... }@inputs: 
     let
+      
+      lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+
       # ~~~ SYSTEM SETTINGS ~~~ #
       systemSettings = {
+ 	
+	profile = "main"; # main, laptop, homelab
+	machine = "desktop"; # desktop, thinkpad, homelab
 
+	# DEFAULTS
 	system = "x86_64-linux";
 	hostname = "eden";
 	timezone = "America/Chicago";
 	locale = "en_US.UTF-8";
 
+        # OVERRIDES
 	desktop = {
-          system = "x86_64-linux";
-	  hostname = "eden";
-          timezone = "America/Chicago";
-          locale = "en_US.UTF-8";
+          #hostname = "eden";
 	};
-
 	thinkpad = {
-          system = "x86_64-linux";
-	  hostname = "eden";
-          timezone = "America/Chicago";
-          locale = "en_US.UTF-8";
+          #hostname = "eden";
 	};
-	
 	homelab = {
-          system = "x86_64-linux";
       	  hostname = "arkserver";
-          timezone = "America/Chicago";
-          locale = "en_US.UTF-8";
 	};
-
- 	profile = "main"; # main, homelab, laptop
-	machine = "desktop"; # desktop, thinkpad, arkserver
-	
-	
-        
       };
-
-      lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
 
       # ~~~ USER SETTINGS ~~~ #
       userSettings = {
+
+	theme = "malat";
+
+        # DEFAULTS
         username = "eden";
 	name = "Eden";
 	#dotfilesDir = "~/.dotfiles";
@@ -66,9 +61,10 @@
 	#browser = "floorp";
 	term = "alacritty";
 	editor = "nvim";
-	
-	theme = "malat";
-
+        
+	# OVERRIDES
+	main = {};
+	laptop = {};
 	homelab = {
           username = "arkserver";
 	  name = "arkserver";
@@ -77,99 +73,37 @@
 
     in {
 
-    nixosConfigurations = 
-    if systemSettings.profile == "main" then {
-      eden = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./profiles/main/configuration.nix ];
-        specialArgs = {
-          inherit systemSettings;
-          inherit userSettings;
-	  inherit inputs;
-        };
+    nixosConfigurations.${systemSettings.${systemSettings.machine}.hostname or systemSettings.hostname} = lib.nixosSystem {
+      system = systemSettings.system;
+      specialArgs = {
+        systemSettings = (systemSettings // systemSettings.${systemSettings.machine});
+        userSettings = (userSettings // userSettings.${systemSettings.profile});
+        inherit inputs;
       };
-    } else if systemSettings.profile == "laptop" then {
-      eden = lib.nixosSystem {
-        system = "x86_64-linux";
-	modules = [ ./profiles/main/configuration.nix ];
-        specialArgs = {
-          inherit systemSettings;
-          inherit userSettings;
-	  inherit inputs;
-        };
-      };
-    } else if systemSettings.profile == "homelab" then {
-      arkserver = lib.nixosSystem {
-        system = "x86_64-linux";
-	modules = [ ./profiles/homelab/configuration.nix ];
-        specialArgs = {
-          systemSettings = (systemSettings // systemSettings.homelab);
-          userSettings = (userSettings // userSettings.homelab);
-	  inherit inputs;
-	};
-      };
-    } else
-      abort "systemSettings.profile is invalid";
+      modules = [ 
+        (./. + "/profiles"+("/"+systemSettings.profile)+"/configuration.nix")
+      ];
+    };
 
-    #nixosConfigurations = {
-    #  eden = lib.nixosSystem {
-    #    system = systemSettings.system;
-    #    #modules = [ ./configuration.nix ];
-    #    modules = [ (./. + "/profiles"+("/"+systemSettings.profile)+"/configuration.nix") ];
-    #    specialArgs = {
-    #      #inherit SystemSettings;
-    #      systemSettings == (systemSettings // systemSettings.profile);
-    #      #inherit userSettings;
-    #      userSettings == (userSettings // userSettings.profile);
-    #    };
-    #  };
-    #};
+    homeConfigurations.${userSettings.${systemSettings.profile}.username or userSettings.username} = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = {
+        systemSettings = (systemSettings // systemSettings.${systemSettings.machine});
+	userSettings = (userSettings // userSettings.${systemSettings.profile});
+	inherit inputs;
+      };
+      modules = [
+        (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix")
+        (./. + "/themes"+("/"+userSettings.theme)+".nix")
+      ];
+    };
+    
+    #packages.${systemSettings.system}.default = (
+    #  nvf.lib.neovimConfiguration {
+    #    pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+#	modules = [ ./nvf-config.nix ];
+#      }
+#    ).neovim;
 
-    homeConfigurations =
-    if systemSettings.profile == "main" then {
-      eden = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-	extraSpecialArgs = {
-  	  inherit systemSettings;
-          inherit userSettings;
-	  inherit inputs;
-	};
-	#modules = [ ./home.nix ];
-        modules = [
-	  (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix")
-          (./. + "/themes"+("/"+userSettings.theme)+".nix")
-	];
-      };
-    } else if systemSettings.profile == "laptop" then {
-      eden = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-	extraSpecialArgs = {
-  	  inherit systemSettings;
-          inherit userSettings;
-	  inherit inputs;
-	};
-	#modules = [ ./home.nix ];
-        modules = [
-	  (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix")
-          (./. + "/themes"+("/"+userSettings.theme)+".nix")
-	];
-      };
-    } else if systemSettings.profile == "homelab" then {
-      arkserver = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-	extraSpecialArgs = {
-          systemSettings = (systemSettings // systemSettings.homelab);
-          userSettings = (userSettings // userSettings.homelab);
-	  inherit inputs;
-	};
-	#modules = [ ./home.nix ];
-        modules = [
-	  (./. + "/profiles"+("/"+systemSettings.profile)+"/home.nix")
-          (./. + "/themes"+("/"+userSettings.theme)+".nix")
-	];
-      };
-    } else
-      abort "systemSettings.profile is invalid";
   };
-
 }
