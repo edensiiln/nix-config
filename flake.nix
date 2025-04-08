@@ -4,18 +4,18 @@
   inputs = {
 
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    
+    nix-colors.url = "github:misterio77/nix-colors";
+    minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    nix-colors.url = "github:misterio77/nix-colors";
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    minecraft-servers.url = "github:mkaito/nixos-modded-minecraft-servers";
-    
   };
 
   outputs = { self, nixpkgs, home-manager, nvf, ... }@inputs: 
@@ -51,7 +51,7 @@
       # ~~~ USER SETTINGS ~~~ #
       userSettings = {
 
-	theme = "malat";
+	theme = "eden";
 
         # DEFAULTS
         username = "eden";
@@ -97,13 +97,6 @@
         (./. + "/themes"+("/"+userSettings.theme)+".nix")
       ];
     };
-    
-    #packages.${systemSettings.system}.default = (
-    #  nvf.lib.neovimConfiguration {
-    #    pkgs = nixpkgs.legacyPackages.${systemSettings.system};
-#	modules = [ ./nvf-config.nix ];
-#      }
-#    ).neovim;
-
+      
   };
 }

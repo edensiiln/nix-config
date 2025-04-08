@@ -1,31 +1,34 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, inputs, ... }:
 {
-  imports = [ inputs.nvf.nixosModules.default ];
+
+  imports = [ inputs.nvf.homeManagerModules.default ];
 
   programs.nvf = {
     enable = true;
+    
     settings = {
       vim = {
         theme = {
           enable = true;
+
           name = "base16";
-          base16-colors = {
-            base00 = "0x${base00}";
-	    base01 = "0x${base01}";
-	    base02 = "0x${base02}";
-	    base03 = "0x${base03}";
-	    base04 = "0x${base04}";
-	    base05 = "0x${base05}";
-	    base06 = "0x${base06}";
-	    base07 = "0x${base07}";
-	    base08 = "0x${base08}";
-	    base09 = "0x${base09}";
-	    base0A = "0x${base0A}";
-	    base0B = "0x${base0B}";
-	    base0C = "0x${base0C}";
-	    base0D = "0x${base0D}";
-            base0E = "0x${base0E}";
-	    base0F = "0x${base0F}";
+          base16-colors = with config.colorscheme.palette; {
+            base00 = "${base00}";
+            base01 = "${base01}";
+            base02 = "${base02}";
+            base03 = "${base03}";
+            base04 = "${base04}";
+            base05 = "${base05}";
+            base06 = "${base06}";
+            base07 = "${base07}";
+            base08 = "${base08}";
+            base09 = "${base09}";
+            base0A = "${base0A}";
+            base0B = "${base0B}";
+            base0C = "${base0C}";
+            base0D = "${base0D}";
+            base0E = "${base0E}";
+            base0F = "${base0F}";
           };
         };
 
@@ -38,7 +41,25 @@
           enableTreesitter = true;
 
           nix.enable = true;
+          nix.lsp.server = "nixd";
+
+          rust.enable = true;
+
         };
+        
+        options = {
+          tabstop = 2;
+          shiftwidth = 2;
+                    
+        };
+
+        ui.colorizer = {
+          enable = true;
+          setupOpts.filetypes = {
+            "*" = { };
+          };
+        };
+      
       };
     };
   };
