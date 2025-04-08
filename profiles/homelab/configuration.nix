@@ -1,5 +1,10 @@
-{ pkgs, lib, userSettings, inputs, ... }:
 {
+  pkgs,
+  lib,
+  userSettings,
+  inputs,
+  ...
+}: {
   imports = [
     ../../machines/arkserver/hardware-configuration.nix
     ../../machines/arkserver/boot.nix
@@ -10,7 +15,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
@@ -63,20 +68,19 @@
   ];
 
   fonts.packages = with pkgs; [
-   nerdfonts
+    nerdfonts
   ];
-  
+
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     #shell = pkgs.nushell;
     packages = with pkgs; [];
   };
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    
   ];
 
   programs.ssh.startAgent = true;

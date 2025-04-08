@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   dbus-sway-environment = pkgs.writeTextFile {
     name = "dbus-sway-environment";
     destination = "/bin/dbus-sway-environment";
@@ -26,19 +29,17 @@ let
       gsettings set $gnome_schema gtk-theme 'Tokyo Night'
     '';
   };
-
-in
-{
+in {
   services.greetd = {
     enable = true;
     settings = {
-     default_session.command = ''
-      ${pkgs.greetd.tuigreet}/bin/tuigreet \
-        --time \
-        --asterisks \
-        --user-menu \
-        --cmd sway
-    '';
+      default_session.command = ''
+        ${pkgs.greetd.tuigreet}/bin/tuigreet \
+          --time \
+          --asterisks \
+          --user-menu \
+          --cmd sway
+      '';
     };
   };
 
@@ -48,20 +49,20 @@ in
 
   environment.systemPackages = with pkgs; [
     wayland
-    dbus   # make dbus-update-activation-environment available in the path
+    dbus # make dbus-update-activation-environment available in the path
     dbus-sway-environment
     configure-gtk
     xdg-utils # for opening default programs when clicking links
     glib # gsettings
     tokyo-night-gtk
-    gnome3.adwaita-icon-theme  # default gnome cursors
+    gnome3.adwaita-icon-theme # default gnome cursors
     swaylock
     swayidle
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     bemenu # wayland clone of dmenu
-    mako # notification system 
+    mako # notification system
     wdisplays # tool to configure displays
   ];
 
@@ -77,12 +78,12 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   programs.sway = {
     enable = true;
-    wrapperFeatures.gtk = true;  
+    wrapperFeatures.gtk = true;
     config = rec {
       modifier = "Mod4"; # Super key
       terminal = "alacritty";

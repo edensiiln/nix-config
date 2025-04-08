@@ -1,4 +1,8 @@
-{ config, pkgs, ...}:
+{
+  config,
+  pkgs,
+  ...
+}:
 #let
 #background = ./../backgrounds/pink-clouds.png;
 #init = ''
@@ -22,11 +26,11 @@
     enable = true;
     settings = {
       default_session.command = ''
-        ${pkgs.greetd.tuigreet}/bin/tuigreet \
-	  --time \
-          --asterisks \
-	  --user-menu \
-	  --cmd Hyprland
+             ${pkgs.greetd.tuigreet}/bin/tuigreet \
+        --time \
+               --asterisks \
+        --user-menu \
+        --cmd Hyprland
       '';
     };
   };
@@ -54,7 +58,6 @@
   hardware = {
     #opengl.enable = true;
     graphics.enable = true;
-    
 
     nvidia = {
       modesetting.enable = true;
@@ -83,8 +86,8 @@
     grim # screenshots
     slurp # screenshots
     networkmanagerapplet
-    ];
+  ];
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 }

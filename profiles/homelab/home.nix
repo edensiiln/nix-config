@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../home/sh.nix
   ];
@@ -35,7 +38,7 @@
     source = ../../ranger/scope.sh;
     executable = true;
   };
-  
+
   home.sessionVariables = {
     EDITOR = "nvim";
 

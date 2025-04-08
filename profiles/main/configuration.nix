@@ -1,8 +1,13 @@
-{ pkgs, lib, systemSettings, userSettings, ... }:
 {
+  pkgs,
+  lib,
+  systemSettings,
+  userSettings,
+  ...
+}: {
   imports = [
-    ( ../.. + "/machines"+("/"+systemSettings.machine)+"/boot.nix")
-    ( ../.. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
+    (../.. + "/machines" + ("/" + systemSettings.machine) + "/boot.nix")
+    (../.. + "/machines" + ("/" + systemSettings.machine) + "/hardware-configuration.nix")
     ../../system/wm/hyprland.nix
     ../../system/bluetooth.nix
     ../../system/networking.nix
@@ -13,7 +18,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
@@ -80,18 +85,17 @@
     powerline-fonts
     powerline-symbols
   ];
-  
+
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     #shell = pkgs.nushell;
     packages = with pkgs; [];
   };
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    
   ];
 
   programs.ssh.startAgent = true;

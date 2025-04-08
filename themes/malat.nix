@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
   ];
@@ -11,11 +14,11 @@
     enable = true;
     theme.package = pkgs.gruvbox-dark-gtk;
     theme.name = "gruvbox-dark-gtk";
-    
+
     cursorTheme.package = pkgs.bibata-cursors;
     cursorTheme.name = "Bibata-Modern-Ice";
-    
-    #iconTheme.package = 
+
+    #iconTheme.package =
   };
 
   qt = {
@@ -23,8 +26,8 @@
     platformTheme.name = "gtk";
     style.name = "gruvbox-dark";
   };
-  
-        #home-manager.lib.homeManagerConfiguration.extraSpecialArgs = {
-        #    wallpaper = "golden-woods.png";
-        #  };
+
+  #home-manager.lib.homeManagerConfiguration.extraSpecialArgs = {
+  #    wallpaper = "golden-woods.png";
+  #  };
 }

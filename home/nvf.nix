@@ -1,11 +1,13 @@
-{ config, inputs, ... }:
 {
-
-  imports = [ inputs.nvf.homeManagerModules.default ];
+  config,
+  inputs,
+  ...
+}: {
+  imports = [inputs.nvf.homeManagerModules.default];
 
   programs.nvf = {
     enable = true;
-    
+
     settings = {
       vim = {
         theme = {
@@ -44,24 +46,20 @@
           nix.lsp.server = "nixd";
 
           rust.enable = true;
-
         };
-        
+
         options = {
           tabstop = 2;
           shiftwidth = 2;
-                    
         };
 
         ui.colorizer = {
           enable = true;
           setupOpts.filetypes = {
-            "*" = { };
+            "*" = {};
           };
         };
-      
       };
     };
   };
-  
 }

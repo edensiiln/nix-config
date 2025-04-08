@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
   ];
@@ -10,11 +13,11 @@
     enable = true;
     theme.package = pkgs.tokyonight-gtk-theme;
     theme.name = "tokyonight-gtk-theme";
-    
+
     cursorTheme.package = pkgs.bibata-cursors;
     cursorTheme.name = "Bibata-Modern-Ice";
-    
-    #iconTheme.package = 
+
+    #iconTheme.package =
   };
 
   qt = {
@@ -22,9 +25,8 @@
     platformTheme.name = "gtk";
     style.name = "tokyo-night";
   };
-  
-        #home-manager.lib.homeManagerConfiguration.extraSpecialArgs = {
-        #    wallpaper = "pink-clouds.png";
-        #  };
-}
 
+  #home-manager.lib.homeManagerConfiguration.extraSpecialArgs = {
+  #    wallpaper = "pink-clouds.png";
+  #  };
+}

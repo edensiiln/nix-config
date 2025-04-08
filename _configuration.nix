@@ -1,9 +1,13 @@
-{ config, pkgs, systemSettings, userSettings, ... }:
-
 {
+  config,
+  pkgs,
+  systemSettings,
+  userSettings,
+  ...
+}: {
   imports = [
-    ( ./. + "/machines"+("/"+systemSettings.machine)+"/boot.nix")
-    ( ./. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
+    (./. + "/machines" + ("/" + systemSettings.machine) + "/boot.nix")
+    (./. + "/machines" + ("/" + systemSettings.machine) + "/hardware-configuration.nix")
     #../../system/bluetooth.nix
     #../../system/networking.nix
     #../../system/sound.nix
@@ -26,7 +30,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
@@ -60,15 +64,14 @@
   #programs.nushell.enable = true;
 
   environment.systemPackages = with pkgs; [
-
     # text editors
     vim
     neovim
-    
+
     # git
     git
     gitui
-    
+
     # terminal
     starship
     nushell
@@ -93,18 +96,17 @@
     xorg.xhost
     docker
   ];
-  
+
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     #shell = pkgs.nushell;
     packages = with pkgs; [];
   };
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    
   ];
 
   programs.ssh.startAgent = true;

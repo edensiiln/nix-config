@@ -1,7 +1,6 @@
 {
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
-
     monitor = ",preferred,auto,auto";
     #source = ./hyprland-colors.conf
 
@@ -38,8 +37,8 @@
 
       blur = {
         enabled = true;
-	size = "3";
-	passes = "1";
+        size = "3";
+        passes = "1";
       };
 
       #drop_shadow = "yes";
@@ -52,15 +51,14 @@
       enabled = "yes";
       bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
     };
-    
 
     # LAYOUTS
-    
+
     dwindle = {
       pseudotile = false;
       preserve_split = true;
     };
-    
+
     #master = {
     #  new_is_master = true;
     #};
@@ -151,8 +149,6 @@
       "float, org.pulseaudio.pavucontrol"
     ];
   };
-
-  
 
   wayland.windowManager.hyprland.extraConfig = ''
     #exec-once = wlr-randr --output DP-1 --transform 90 --pos 0,0 --output HDMI-A-1 --pos 1080,840 --output DP-3 --pos 3000,840

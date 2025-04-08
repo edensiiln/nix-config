@@ -1,6 +1,9 @@
 # configurations for shells and shell prompts
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   shellAliases = {
     ns = "sudo nixos-rebuild switch";
     nsf = "sudo nixos-rebuild switch --flake";
@@ -23,9 +26,7 @@ let
     yta-mp3 = "yt-dlp --extract-audio --audio-format mp3";
     ytv-best = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4";
   };
-in
-{
-  
+in {
   # Shells
   programs.bash = {
     enable = true;
@@ -37,9 +38,11 @@ in
   };
   programs.nushell = {
     enable = true;
-    shellAliases = shellAliases // {
-      cat = "bat";
-    };
+    shellAliases =
+      shellAliases
+      // {
+        cat = "bat";
+      };
     extraConfig = ''
       $env.config = {
         show_banner: false

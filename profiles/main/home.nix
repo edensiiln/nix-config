@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, ... }:
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ../../home/alacritty.nix
     ../../home/hyprland.nix
@@ -9,7 +13,7 @@
     ../../home/waybar.nix
 
     #inputs.nix-colors.homeManagerModules.default
-    
+
     #../../themes/${extraSpecialArgs.userSettings.theme}.nix
   ];
 
@@ -82,7 +86,7 @@
     source = ../../.config/ranger/scope.sh;
     executable = true;
   };
-  
+
   home.sessionVariables = {
     EDITOR = "nvim";
 
@@ -96,6 +100,4 @@
     CARGO_MOMMYS_LITTLE = "Weapon/Asset/Knife/doll";
     CARGO_MOMMYS_MOODS = "ominous";
   };
-
-  
 }
