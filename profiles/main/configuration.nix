@@ -7,6 +7,7 @@
 }: {
   imports = [
     (../.. + "/machines" + ("/" + systemSettings.machine) + "/boot.nix")
+    (../.. + "/machines" + ("/" + systemSettings.machine) + "/graphics.nix")
     (../.. + "/machines" + ("/" + systemSettings.machine) + "/hardware-configuration.nix")
     ../../system/wm/hyprland.nix
     ../../system/bluetooth.nix

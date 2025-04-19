@@ -7,6 +7,7 @@
 }: {
   imports = [
     ../../machines/arkserver/hardware-configuration.nix
+    ../../machines/arkserver/graphics.nix
     ../../machines/arkserver/boot.nix
     ../../system/networking.nix
     ../../system/locale.nix
