@@ -44,8 +44,17 @@
 
           nix.enable = true;
           nix.lsp.server = "nixd";
+          nix.lsp.options = {
+            nixos = {
+              expr = (builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.eden.options;
+            };
+            home_manager = {
+              expr = (builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations.eden.options;
+            };
+          };
 
           rust.enable = true;
+
         };
 
         options = {

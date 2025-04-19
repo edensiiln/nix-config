@@ -146,12 +146,11 @@
 
     windowrule = [
       #"float, class:^(org.pulseaudio.pavucontrol)$"
-      "float, org.pulseaudio.pavucontrol"
+      "float, class:org.pulseaudio.pavucontrol"
     ];
   };
 
   wayland.windowManager.hyprland.extraConfig = ''
-    #exec-once = wlr-randr --output DP-1 --transform 90 --pos 0,0 --output HDMI-A-1 --pos 1080,840 --output DP-3 --pos 3000,840
     exec-once = kanshi
     exec-once = hyprpaper --config /home/eden/.dotfiles/.config/hyprpaper.conf
     exec-once = nm-applet --indicator
