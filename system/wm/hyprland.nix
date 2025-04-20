@@ -2,25 +2,11 @@
   config,
   pkgs,
   ...
-}:
-#let
-#background = ./../backgrounds/pink-clouds.png;
-#init = ''
-# #!/usr/bin/env bash
-#  sww init &
-#  sww img ${background} &
-#  nm-applet --indicator &
-#  waybar &
-#  mako
-#'';
-#in
-{
+}: {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
-
-  services.xserver.videoDrivers = ["nvidia"];
 
   services.greetd = {
     enable = true;
@@ -28,7 +14,7 @@
       default_session.command = ''
              ${pkgs.greetd.tuigreet}/bin/tuigreet \
         --time \
-               --asterisks \
+        --asterisks \
         --user-menu \
         --cmd Hyprland
       '';
@@ -53,25 +39,6 @@
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1"; # if your cursor becomes invisible
     NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
-  };
-
-  hardware = {
-    #opengl.enable = true;
-    graphics.enable = true;
-
-    nvidia = {
-      modesetting.enable = true;
-
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-
-      open = false;
-
-      nvidiaSettings = true;
-
-      #package = config.boot.kernelPackages.nvidiaPackages.stable;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-    };
   };
 
   environment.systemPackages = with pkgs; [
