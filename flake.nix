@@ -52,7 +52,7 @@
 
     # ~~~ USER SETTINGS ~~~ #
     userSettings = {
-      theme = "eden";
+      theme = "marrel";
 
       # DEFAULTS
       username = "eden";

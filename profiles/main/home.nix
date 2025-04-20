@@ -41,7 +41,7 @@
     webcord
     obsidian
     github-desktop
-    godot_4
+    #godot_4
     alacritty
     kitty
     xfce.thunar
