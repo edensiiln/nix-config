@@ -6,14 +6,16 @@
   ...
 }: {
   imports = [
-    ../../machines/arkserver/hardware-configuration.nix
-    ../../machines/arkserver/graphics.nix
-    ../../machines/arkserver/boot.nix
+    ../../machines/arkserver/default.nix
     ../../system/wm/xfce.nix
-    ../../system/networking.nix
-    ../../system/locale.nix
+    ../../system/default.nix
     ../../programs/minecraft-servers.nix
   ];
+
+  # custom modules
+  plexModule.enable = true;
+
+  hardware.graphics.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -24,11 +26,6 @@
 
   #services.polybar.enable = true;
   services.printing.enable = true;
-
-  services.plex = {
-    enable = true;
-    openFirewall = true;
-  };
 
   # Polkit
   security.polkit.enable = true;
@@ -71,6 +68,7 @@
     ntfs3g
     xorg.xhost
     docker
+
     godns
   ];
 

@@ -6,16 +6,18 @@
   ...
 }: {
   imports = [
-    (../.. + "/machines" + ("/" + systemSettings.machine) + "/boot.nix")
-    (../.. + "/machines" + ("/" + systemSettings.machine) + "/graphics.nix")
-    (../.. + "/machines" + ("/" + systemSettings.machine) + "/hardware-configuration.nix")
+    (../.. + "/machines" + ("/" + systemSettings.machine) + "/default.nix")
     ../../system/wm/hyprland.nix
-    ../../system/bluetooth.nix
-    ../../system/networking.nix
-    ../../system/locale.nix
-    ../../system/sound.nix
-    ../../system/steam.nix
+    ../../system/default.nix
   ];
+
+  # custom modules
+  bluetoothModule.enable = true;
+  nvidiaDriversModule.enable = systemSettings.machine == "desktop";
+  soundModule.enable = true;
+  steamModule.enable = true;
+
+  hardware.graphics.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -53,20 +55,29 @@
   #programs.nushell.enable = true;
 
   environment.systemPackages = with pkgs; [
+    # text editors
     vim
     neovim
-    wget
+
+    # git
     git
     gitui
+
+    # terminal
     starship
     nushell
     zellij
     btop
     neofetch
     ranger
+
+    # rust
     rustup
     rustc
     cargo
+
+    # tools
+    wget
     unzip
     man
     tldr
@@ -74,9 +85,9 @@
     ntfs3g
     xorg.xhost
     docker
+
     prismlauncher
   ];
-  #++ nixvim.packages.x86_64-linux.default;
 
   fonts.packages = with pkgs; [
     nerd-fonts._0xproto

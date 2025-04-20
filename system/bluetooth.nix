@@ -1,11 +1,18 @@
 {
-  config,
   pkgs,
+  lib,
+  config,
   ...
 }: {
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  options = {
+    bluetoothModule.enable = lib.mkEnableOption "enable bluetooth";
   };
-  services.blueman.enable = true;
+
+  config = lib.mkIf config.bluetoothModule.enable {
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    services.blueman.enable = true;
+  };
 }

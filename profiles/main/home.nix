@@ -92,9 +92,6 @@
 
     #RANGER_LOAD_DEFAULT_RC = "FALSE";
 
-    #CARGO_MOMMYS_ROLES = "Miss/Miss/Miss/Miss/Mommy";
-    #CARGO_MOMMYS_PRONOUNS = "her/her/her/its";
-    #CARGO_MOMMYS_LITTLE = "doll/doll/doll/puppy/puppy/girl";
     CARGO_MOMMYS_ROLES = "Director/Handler/Mx./Mx. Diana";
     CARGO_MOMMYS_PRONOUNS = "her";
     CARGO_MOMMYS_LITTLE = "Weapon/Asset/Knife/doll";

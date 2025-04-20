@@ -1,11 +1,18 @@
 {
-  config,
   pkgs,
+  lib,
+  config,
   ...
 }: {
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
+  options = {
+    steamModule.enable = lib.mkEnableOption "enable steam";
+  };
+
+  config = lib.mkIf config.steamModule.enable {
+    programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
   };
 }

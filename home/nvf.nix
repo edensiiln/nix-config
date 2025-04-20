@@ -54,7 +54,6 @@
           };
 
           rust.enable = true;
-
         };
 
         options = {

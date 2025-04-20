@@ -1,5 +1,9 @@
-{ config, pkgs, callPackage, ... }: {
-  
+{
+  config,
+  pkgs,
+  callPackage,
+  ...
+}: {
   services.xserver = {
     enable = true;
     desktopManager = {
@@ -36,5 +40,4 @@
     TTYVHangup = true;
     TTYVTDisallocate = true;
   };
-
 }
