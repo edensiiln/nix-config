@@ -30,7 +30,7 @@
     # ~~~ SYSTEM SETTINGS ~~~ #
     systemSettings = {
       profile = "main"; # main, laptop, homelab
-      machine = "desktop"; # desktop, thinkpad, homelab
+      machine = "thinkpad"; # desktop, thinkpad, homelab
 
       # DEFAULTS
       system = "x86_64-linux";
