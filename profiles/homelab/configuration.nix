@@ -25,6 +25,11 @@
   #services.polybar.enable = true;
   services.printing.enable = true;
 
+  services.plex = {
+    enable = true;
+    openFirewall = true;
+  };
+
   # Polkit
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
