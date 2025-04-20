@@ -1,11 +1,11 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
-  programs.hyprland = {
+{ config, pkgs, callPackage, ... }: {
+  
+  services.xserver = {
     enable = true;
-    xwayland.enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce.enable = true;
+    };
   };
 
   services.greetd = {
@@ -16,12 +16,12 @@
         --time \
         --asterisks \
         --user-menu \
-        --cmd Hyprland
+        --xsession-wrapper xfce
       '';
     };
   };
   environment.etc."greetd/environments".text = ''
-    hyprland
+    startxfce4
     zsh
   '';
 
@@ -37,25 +37,4 @@
     TTYVTDisallocate = true;
   };
 
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1"; # if your cursor becomes invisible
-    NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
-  };
-
-  environment.systemPackages = with pkgs; [
-    waybar # status bar
-    mako # notification daemon
-    libnotify
-    hyprpaper # wallpaper daemon
-    wofi
-    rofi-wayland
-    wl-clipboard
-    cliphist
-    grim # screenshots
-    slurp # screenshots
-    networkmanagerapplet
-  ];
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 }
