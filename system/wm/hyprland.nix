@@ -54,6 +54,7 @@
     grim # screenshots
     slurp # screenshots
     networkmanagerapplet
+    hyprpolkitagent
   ];
 
   xdg.portal.enable = true;

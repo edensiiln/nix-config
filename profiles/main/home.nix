@@ -11,10 +11,6 @@
     ../../home/nvf.nix
     ../../home/sh.nix
     ../../home/waybar.nix
-
-    #inputs.nix-colors.homeManagerModules.default
-
-    #../../themes/${extraSpecialArgs.userSettings.theme}.nix
   ];
 
   programs.home-manager.enable = true;
@@ -25,14 +21,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  #colorscheme = inputs.nix-colors.colorSchemes.tokyo-night;
-  #colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-  #colorscheme = theme.colorscheme;
-
   # Terminal Emulators
 
   home.packages = with pkgs; [
-    #polybar
     headsetcontrol
     firefox
     floorp
@@ -45,7 +36,6 @@
     alacritty
     kitty
     xfce.thunar
-    #rofi
     mpv
     vlc
     #maim

@@ -1,7 +1,6 @@
 {
   config,
-  inputs,
-  ...
+  inputs,  ...
 }: {
   imports = [inputs.nvf.homeManagerModules.default];
 
@@ -10,6 +9,24 @@
 
     settings = {
       vim = {
+
+        formatter.conform-nvim = {
+          enable = true;
+          setupOpts.formatters-by-ft = {
+            nix = [ "alejandra" ];
+          };
+        };
+
+        diagnostics = {
+          enable = true;
+          config = {
+            signs = true;
+            virtual_lines = true;
+            virtual_text = true;
+
+          };
+        };
+
         theme = {
           enable = true;
 

@@ -29,6 +29,8 @@
   #services.polybar.enable = true;
   services.printing.enable = true;
 
+  programs.partition-manager.enable = true;
+
   # Polkit
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
@@ -103,12 +105,11 @@
     description = userSettings.name;
     extraGroups = ["networkmanager" "wheel"];
     #shell = pkgs.nushell;
-    packages = with pkgs; [];
+    #packages = with pkgs; [];
   };
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-  ];
+  #programs.nix-ld.libraries = with pkgs; [];
 
   programs.ssh.startAgent = true;
 

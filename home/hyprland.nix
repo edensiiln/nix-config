@@ -1,4 +1,7 @@
 {
+  pkgs, 
+  ...
+}:{
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
     monitor = ",preferred,auto,auto";
@@ -154,6 +157,7 @@
     exec-once = kanshi
     exec-once = hyprpaper --config /home/eden/.dotfiles/.config/hyprpaper.conf
     exec-once = nm-applet --indicator
+    exec-once = systemctl --user start hyprpolkitagent
     exec-once = dunst
     exec-once = wl-clipboard-history -t
     exec-once = wl-paste --watch cliphist store
