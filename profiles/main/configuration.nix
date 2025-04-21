@@ -1,25 +1,35 @@
-{ pkgs, lib, systemSettings, userSettings, ... }:
 {
+  pkgs,
+  lib,
+  systemSettings,
+  userSettings,
+  ...
+}: {
   imports = [
-    ( ../.. + "/machines"+("/"+systemSettings.machine)+"/boot.nix")
-    ( ../.. + "/machines"+("/"+systemSettings.machine)+"/hardware-configuration.nix")
+    (../.. + "/machines" + ("/" + systemSettings.machine) + "/default.nix")
     ../../system/wm/hyprland.nix
-    ../../system/bluetooth.nix
-    ../../system/networking.nix
-    ../../system/locale.nix
-    ../../system/sound.nix
-    ../../system/steam.nix
+    ../../system/default.nix
   ];
+
+  # custom modules
+  bluetoothModule.enable = true;
+  nvidiaDriversModule.enable = systemSettings.machine == "desktop";
+  soundModule.enable = true;
+  steamModule.enable = true;
+
+  hardware.graphics.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
 
   #services.polybar.enable = true;
   services.printing.enable = true;
+
+  programs.partition-manager.enable = true;
 
   # Polkit
   security.polkit.enable = true;
@@ -42,25 +52,34 @@
 
   # Shells
   #environment.shells = with pkgs; [ zsh nushell ];
-  #users.defaultUserShell = pkgs.zsh;
-  #programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
   #programs.nushell.enable = true;
 
   environment.systemPackages = with pkgs; [
+    # text editors
     vim
     neovim
-    wget
+
+    # git
     git
     gitui
+
+    # terminal
     starship
     nushell
     zellij
     btop
     neofetch
     ranger
+
+    # rust
     rustup
     rustc
     cargo
+
+    # tools
+    wget
     unzip
     man
     tldr
@@ -68,25 +87,29 @@
     ntfs3g
     xorg.xhost
     docker
+
+    prismlauncher
   ];
-  #++ nixvim.packages.x86_64-linux.default;
 
   fonts.packages = with pkgs; [
-   nerdfonts
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.symbols-only
+    font-awesome
+    powerline-fonts
+    powerline-symbols
   ];
-  
+
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     #shell = pkgs.nushell;
-    packages = with pkgs; [];
+    #packages = with pkgs; [];
   };
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    
-  ];
+  #programs.nix-ld.libraries = with pkgs; [];
 
   programs.ssh.startAgent = true;
 

@@ -1,8 +1,15 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
-    ../../sh.nix
+    ../../home/alacritty.nix
     ../../home/hyprland.nix
+    ../../home/kanshi.nix
+    ../../home/nvf.nix
+    ../../home/sh.nix
     ../../home/waybar.nix
   ];
 
@@ -15,41 +22,8 @@
   nixpkgs.config.allowUnfree = true;
 
   # Terminal Emulators
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      shell = "nu";
-      colors = {
-        primary = {
-          foreground = "#a9b1d6";
-          background = "#1a1b26";
-        };
-	normal = {
-	  black = "#32344a";
-	  red = "#f7768e";
-	  green = "#9ece6a";
-	  yellow = "#e0af68";
-	  blue = "#7aa2f7";
-	  magenta = "#ad8ee6";
-	  cyan = "#449dab";
-	  white = "#787c99";
-	};
-	bright = {
-	  black = "#444b6a";
-	  red = "#ff7a93";
-	  green = "#b9f27c";
-	  yellow = "#ff9e64";
-	  blue = "#7da6ff";
-	  magenta = "#bb9af7";
-	  cyan = "#0db9d7";
-	  white = "#acb0d0";
-	};
-      };
-    };
-  };
 
   home.packages = with pkgs; [
-    #polybar
     headsetcontrol
     firefox
     floorp
@@ -58,23 +32,25 @@
     webcord
     obsidian
     github-desktop
-    godot_4
+    #godot_4
     alacritty
     kitty
     xfce.thunar
-    rofi
     mpv
     vlc
-    maim
+    #maim
     yt-dlp
     cargo-mommy
     bat
     z-lua
     gparted
     pavucontrol
+    pamixer
     pragha
     sxiv
     wlr-randr
+    imagemagick
+    swappy
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -94,26 +70,21 @@
     # '';
   };
 
-  home.file.".config/ranger/rc.conf".source = ../../ranger/rc.conf;
-  home.file.".config/ranger/rifle.conf".source = ../../ranger/rifle.conf;
+  home.file.".config/ranger/rc.conf".source = ../../.config/ranger/rc.conf;
+  home.file.".config/ranger/rifle.conf".source = ../../.config/ranger/rifle.conf;
   home.file.".config/ranger/scope.sh" = {
-    source = ../../ranger/scope.sh;
+    source = ../../.config/ranger/scope.sh;
     executable = true;
   };
-  
+
   home.sessionVariables = {
     EDITOR = "nvim";
 
     #RANGER_LOAD_DEFAULT_RC = "FALSE";
 
-    #CARGO_MOMMYS_ROLES = "Miss/Miss/Miss/Miss/Mommy";
-    #CARGO_MOMMYS_PRONOUNS = "her/her/her/its";
-    #CARGO_MOMMYS_LITTLE = "doll/doll/doll/puppy/puppy/girl";
     CARGO_MOMMYS_ROLES = "Director/Handler/Mx./Mx. Diana";
     CARGO_MOMMYS_PRONOUNS = "her";
     CARGO_MOMMYS_LITTLE = "Weapon/Asset/Knife/doll";
     CARGO_MOMMYS_MOODS = "ominous";
   };
-
-  
 }

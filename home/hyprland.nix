@@ -1,7 +1,9 @@
 {
+  pkgs, 
+  ...
+}:{
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
-
     monitor = ",preferred,auto,auto";
     #source = ./hyprland-colors.conf
 
@@ -38,32 +40,31 @@
 
       blur = {
         enabled = true;
-	size = "3";
-	passes = "1";
+        size = "3";
+        passes = "1";
       };
 
-      drop_shadow = "yes";
-      shadow_range = "4";
-      shadow_render_power = "3";
-      "col.shadow" = "rgba(1a1a1aee)";
+      #drop_shadow = "yes";
+      #shadow_range = "4";
+      #shadow_render_power = "3";
+      #"col.shadow" = "rgba(1a1a1aee)";
     };
 
     animations = {
       enabled = "yes";
       bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
     };
-    
 
     # LAYOUTS
-    
+
     dwindle = {
       pseudotile = false;
       preserve_split = true;
     };
-    
-    master = {
-      new_is_master = true;
-    };
+
+    #master = {
+    #  new_is_master = true;
+    #};
 
     gestures = {
       workspace_swipe = "off";
@@ -76,6 +77,7 @@
     # BINDS
 
     "$mod" = "SUPER";
+    "$prtsc" = "code:107";
 
     bind = [
       # exec binds
@@ -83,7 +85,19 @@
       "$mod, D, exec, wofi --show drun"
       "$mod, F, exec, thunar"
       "$mod, B, exec, floorp"
+      "$mod, O, exec, obsidian"
       "$mod, SPACE, exec, cliphist list | wofi --show dmenu -H 600 -W 900   | cliphist decode | wl-copy"
+
+      # PRINTSCREEN
+      # selection to clipboard
+      ", $prtsc, exec, grim -g \"$(slurp)\" - | wl-copy"
+      # selection to image editor
+      "CTRL, $prtsc, exec, grim -g \"$(slurp)\" - | swappy -f -"
+
+      # active monitor to clipboard
+      "SHIFT, $prtsc, exec, grim -o \"$(hyprctl monitors | awk '/Monitor/{mon=$2} /focused: yes/{print mon}')\" - | wl-copy"
+      # active monitor to image editor
+      "SHIFT CTRL, $prtsc, exec, grim -o \"$(hyprctl monitors | awk '/Monitor/{mon=$2} /focused: yes/{print mon}')\" - | swappy -f -"
 
       # window management
       "$mod SHIFT, Q, killactive"
@@ -132,13 +146,18 @@
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
     ];
+
+    windowrule = [
+      #"float, class:^(org.pulseaudio.pavucontrol)$"
+      "float, class:org.pulseaudio.pavucontrol"
+    ];
   };
 
   wayland.windowManager.hyprland.extraConfig = ''
-    exec-once = wlr-randr --output DP-1 --transform 90 --pos 0,-808 --output HDMI-A-1 --pos 1080,0 --output DP-3 --pos 3000,0
-    exec-once = swww init
-    exec-once = swww img /home/eden/.dotfiles/backgrounds/pink-clouds.png
+    exec-once = kanshi
+    exec-once = hyprpaper --config /home/eden/.dotfiles/.config/hyprpaper.conf
     exec-once = nm-applet --indicator
+    exec-once = systemctl --user start hyprpolkitagent
     exec-once = dunst
     exec-once = wl-clipboard-history -t
     exec-once = wl-paste --watch cliphist store

@@ -1,16 +1,25 @@
-{ pkgs, lib, userSettings, inputs, ... }:
 {
+  pkgs,
+  lib,
+  userSettings,
+  inputs,
+  ...
+}: {
   imports = [
-    ../../machines/arkserver/hardware-configuration.nix
-    ../../machines/arkserver/boot.nix
-    ../../system/networking.nix
-    ../../system/locale.nix
+    ../../machines/arkserver/default.nix
+    ../../system/wm/xfce.nix
+    ../../system/default.nix
     ../../programs/minecraft-servers.nix
   ];
 
+  # custom modules
+  plexModule.enable = true;
+
+  hardware.graphics.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
@@ -59,26 +68,31 @@
     ntfs3g
     xorg.xhost
     docker
+
     godns
     temurin-bin-21
     tmux
   ];
 
   fonts.packages = with pkgs; [
-   nerdfonts
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.symbols-only
+    font-awesome
+    powerline-fonts
+    powerline-symbols
   ];
-  
+
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     #shell = pkgs.nushell;
     packages = with pkgs; [];
   };
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    
   ];
 
   programs.ssh.startAgent = true;
