@@ -22,8 +22,8 @@
     };
     nat = {
       enable = true;
-      internalInterfaces = [ "wlp4s0" ];
-      externalInterface = "wlp4s0";
+      internalInterfaces = [ "eno1" ];
+      externalInterface = "eno1";
       forwardPorts = [
         {
           sourcePort = 25566;

@@ -47,7 +47,7 @@ in
 	];
 
         serverConfig = {
-          server-port = 25566;
+          server-port = 25565;
           white-list = true;
 	  spawn-protection = 0;
 	  allow-flight = true;

@@ -60,6 +60,8 @@
     xorg.xhost
     docker
     godns
+    temurin-bin-21
+    tmux
   ];
 
   fonts.packages = with pkgs; [
