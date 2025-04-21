@@ -32,10 +32,10 @@
     # '';
   };
 
-  home.file.".config/ranger/rc.conf".source = ../../ranger/rc.conf;
-  home.file.".config/ranger/rifle.conf".source = ../../ranger/rifle.conf;
+  home.file.".config/ranger/rc.conf".source = ../../.config/ranger/rc.conf;
+  home.file.".config/ranger/rifle.conf".source = ../../.config/ranger/rifle.conf;
   home.file.".config/ranger/scope.sh" = {
-    source = ../../ranger/scope.sh;
+    source = ../../.config/ranger/scope.sh;
     executable = true;
   };
 
