@@ -18,10 +18,9 @@
   };
 
   outputs = {
-    self,
+    #self,
     nixpkgs,
     home-manager,
-    nvf,
     ...
   } @ inputs: let
     lib = nixpkgs.lib;
@@ -29,8 +28,8 @@
 
     # ~~~ SYSTEM SETTINGS ~~~ #
     systemSettings = {
-      profile = "homelab"; # main, laptop, homelab
-      machine = "homelab"; # desktop, thinkpad, homelab
+      profile = "main"; # main, laptop, homelab
+      machine = "desktop"; # desktop, thinkpad, homelab
 
       # DEFAULTS
       system = "x86_64-linux";

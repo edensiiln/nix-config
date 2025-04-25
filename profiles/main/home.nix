@@ -51,6 +51,7 @@
     wlr-randr
     imagemagick
     swappy
+    #udiskie
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -76,6 +77,11 @@
     source = ../../.config/ranger/scope.sh;
     executable = true;
   };
+
+  #services.udiskie = {
+  #  enable = true;
+  #  settings.program_options.file_manager = "${pkgs.xfce.thunar}/bin/thunar";
+  #};
 
   home.sessionVariables = {
     EDITOR = "nvim";

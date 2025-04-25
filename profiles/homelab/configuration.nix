@@ -1,8 +1,8 @@
 {
   pkgs,
-  lib,
+  #lib,
   userSettings,
-  inputs,
+  #inputs,
   ...
 }: {
   imports = [
@@ -18,33 +18,7 @@
   hardware.graphics.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  services.xrdp.enable = true;
-  services.xrdp.openFirewall = true;
-
-  #services.polybar.enable = true;
-  services.printing.enable = true;
-
-  # Polkit
-  security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (
-        subject.isInGroup("users")
-          && (
-            action.id == "org.freedesktop.login1.reboot" ||
-            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-            action.id == "org.freedesktop.login1.power-off" ||
-            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-          )
-        )
-      {
-        return polkit.Result.YES;
-      }
-    })
-  '';
 
   environment.systemPackages = with pkgs; [
     vim
@@ -74,40 +48,21 @@
     tmux
   ];
 
-  fonts.packages = with pkgs; [
-    nerd-fonts._0xproto
-    nerd-fonts.droid-sans-mono
-    nerd-fonts.symbols-only
-    font-awesome
-    powerline-fonts
-    powerline-symbols
-  ];
-
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
     extraGroups = ["networkmanager" "wheel"];
     #shell = pkgs.nushell;
-    packages = with pkgs; [];
+    #packages = with pkgs; [];
   };
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-  ];
+  #programs.nix-ld.libraries = with pkgs; [];
 
   programs.ssh.startAgent = true;
 
-  #xdg.portal.enable = true;
-
-  #services.flatpak.enable = true;
-
   # OpenSSH daemon
   services.openssh.enable = true;
-
-  # Firewall
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # networking.firewall.enable = false;
 
   system.stateVersion = "23.11"; # don't change unless you know what you're doing
 }
