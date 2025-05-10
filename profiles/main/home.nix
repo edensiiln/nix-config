@@ -12,6 +12,7 @@
   alacrittyModule.enable = true;
   gitModule.enable = true;
   hyprlandModule.enable = true;
+  hyprpaperModule.enable = true;
   kanshiModule.enable = true;
   nvfModule.enable = true;
   waybarModule.enable = true;

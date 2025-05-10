@@ -6,13 +6,13 @@
   ...
 }: {
   imports = [
-    ../../machines/arkserver/default.nix
-    ../../system/wm/xfce.nix
-    ../../system/default.nix
+    ../../machines/arkserver
+    ../../system
     ../../programs/minecraft-servers.nix
   ];
 
   # custom modules
+  xfceModule.enable = true;
   plexModule.enable = true;
 
   hardware.graphics.enable = true;

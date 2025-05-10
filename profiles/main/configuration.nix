@@ -7,11 +7,11 @@
 }: {
   imports = [
     (../.. + "/machines" + ("/" + systemSettings.machine) + "/default.nix")
-    ../../system/wm/hyprland.nix
     ../../system
   ];
 
   # custom modules
+  hyprlandModule.enable = true;
   bluetoothModule.enable = true;
   nvidiaDriversModule.enable = systemSettings.machine == "desktop";
   soundModule.enable = true;
@@ -45,10 +45,6 @@
     # text editors
     vim
     neovim
-
-    # git
-    #git
-    #gitui
 
     # terminal
     starship

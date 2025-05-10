@@ -16,7 +16,7 @@
     programs.git = {
       enable = true;
 
-      userName = "EdenSiiln";
+      userName = "edensiiln";
       userEmail = "siiln@protonmail.com";
       
       # https://www.youtube.com/watch?v=G3NJzFX6XhY

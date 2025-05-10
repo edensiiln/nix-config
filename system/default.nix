@@ -1,7 +1,9 @@
 {lib, ...}: {
   imports = [
-    ./remote-desktop/default.nix
+    ./remote-desktop
+    ./wm
     ./bluetooth.nix
+    #./minecraft-servers.nix
     ./nvidia-drivers.nix
     ./plex.nix
     ./printing.nix

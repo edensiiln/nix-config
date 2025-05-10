@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   inputs,
   ...
 }: let
@@ -32,29 +33,35 @@
   ];
 in {
   imports = [inputs.minecraft-servers.module];
+  
+  options = {
+    minecraftServersModule.enable = lib.mkEnableOption "enable minecraft-servers";
+  };
 
-  services.modded-minecraft-servers = {
-    eula = true;
+  config = lib.mkIf config.minecraftServersModule.enable {
+    services.modded-minecraft-servers = {
+      eula = true;
 
-    instances = {
-      atm10 = {
-        enable = true;
+      instances = {
+        atm10 = {
+          enable = true;
 
-        jvmPackage = jre21;
-        jvmMaxAllocation = "16G";
-        jvmInitialAllocation = "4G";
+          jvmPackage = jre21;
+          jvmMaxAllocation = "16G";
+          jvmInitialAllocation = "4G";
 
-        rsyncSSHKeys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+XMM+srxrwhJmj/DjO689MdrfzTNuxArRq/RGYFl/v"
-        ];
+          rsyncSSHKeys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+XMM+srxrwhJmj/DjO689MdrfzTNuxArRq/RGYFl/v"
+          ];
 
-        serverConfig = {
-          server-port = 25565;
-          white-list = true;
-          spawn-protection = 0;
-          allow-flight = true;
-          max-tick-time = 5 * 60 * 1000; #5 minutes
-          motd = "All the Mods 10";
+          serverConfig = {
+            server-port = 25565;
+            white-list = true;
+            spawn-protection = 0;
+            allow-flight = true;
+            max-tick-time = 5 * 60 * 1000; #5 minutes
+            motd = "All the Mods 10";
+          };
         };
       };
     };
