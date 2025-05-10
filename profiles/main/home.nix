@@ -5,13 +5,16 @@
   ...
 }: {
   imports = [
-    ../../home/alacritty.nix
-    ../../home/hyprland.nix
-    ../../home/kanshi.nix
-    ../../home/nvf.nix
-    ../../home/sh.nix
-    ../../home/waybar.nix
+    ../../home
   ];
+
+  # CUSTOM MODULES
+  alacrittyModule.enable = true;
+  gitModule.enable = true;
+  hyprlandModule.enable = true;
+  kanshiModule.enable = true;
+  nvfModule.enable = true;
+  waybarModule.enable = true;
 
   programs.home-manager.enable = true;
   home.username = "eden";
@@ -28,14 +31,16 @@
     firefox
     floorp
     libreoffice
+
     discord
-    webcord
+    #webcord
+    revolt-desktop
+
     obsidian
     github-desktop
     #godot_4
     alacritty
     kitty
-    xfce.thunar
     mpv
     vlc
     #maim
@@ -52,6 +57,8 @@
     imagemagick
     swappy
     #udiskie
+  #] ++ [
+    #inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

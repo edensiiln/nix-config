@@ -8,7 +8,7 @@
   imports = [
     (../.. + "/machines" + ("/" + systemSettings.machine) + "/default.nix")
     ../../system/wm/hyprland.nix
-    ../../system/default.nix
+    ../../system
   ];
 
   # custom modules
@@ -23,8 +23,17 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   programs.partition-manager.enable = true;
+  
+  # Thunar
+  programs.thunar.enable = true;
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+  programs.xfconf.enable = true; # prefrence changes discarded without
 
-  services.gvfs.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin # Requires an Archive manager like file-roller, ark, etc
+    thunar-volman # automatic management of removable drives and media
+  ];
 
   # Shells
   #environment.shells = with pkgs; [ zsh nushell ];
@@ -38,8 +47,8 @@
     neovim
 
     # git
-    git
-    gitui
+    #git
+    #gitui
 
     # terminal
     starship
@@ -48,6 +57,7 @@
     btop
     neofetch
     ranger
+    yazi
 
     # rust
     rustup
@@ -57,14 +67,17 @@
     # tools
     wget
     unzip
-    man
-    tldr
-    libqalculate
+    man # info
+    tldr # info
+    libqalculate # calculator
     ntfs3g
     xorg.xhost
     docker
+    ffmpeg
 
     prismlauncher
+
+    kdePackages.ark # file archiver used by thunar
   ];
 
   users.users.${userSettings.username} = {

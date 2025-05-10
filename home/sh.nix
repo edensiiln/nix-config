@@ -1,5 +1,6 @@
 # configurations for shells and shell prompts
 {
+  lib,
   config,
   pkgs,
   ...
@@ -27,42 +28,48 @@
     ytv-best = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4";
   };
 in {
-  # Shells
-  programs.bash = {
-    enable = true;
-    inherit shellAliases;
-  };
-  programs.zsh = {
-    enable = true;
-    inherit shellAliases;
-  };
-  programs.nushell = {
-    enable = true;
-    shellAliases =
-      shellAliases
-      // {
-        cat = "bat";
-      };
-    extraConfig = ''
-      $env.config = {
-        show_banner: false
-      }
-    '';
+
+  options = {
+    shModule.enable = lib.mkEnableOption "enable shells";
   };
 
-  # Prompts
-  programs.starship = {
-    enable = true;
-    settings = {
+  config = {
+    programs.bash = {
+      enable = true;
+      inherit shellAliases;
+    };
+    programs.zsh = {
+      enable = true;
+      inherit shellAliases;
+    };
+    programs.nushell = {
+      enable = true;
+      shellAliases =
+        shellAliases
+        // {
+          cat = "bat";
+        };
+      extraConfig = ''
+        $env.config = {
+          show_banner: false
+        }
+      '';
+    };
+
+    # Prompts
+    programs.starship = {
+      enable = true;
+      settings = {
+      };
+    };
+
+    # Zoxide
+    programs.zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+      options = ["--cmd cd"];
     };
   };
-
-  # Zoxide
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-    options = ["--cmd cd"];
-  };
-}
+  }

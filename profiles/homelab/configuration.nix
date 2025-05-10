@@ -24,8 +24,8 @@
     vim
     neovim
     wget
-    git
-    gitui
+    #git
+    #gitui
     starship
     nushell
     zellij
