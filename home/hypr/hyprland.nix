@@ -3,7 +3,21 @@
   config,
   pkgs,
   ...
-}: {
+}: 
+let
+ startExecs = ''
+  exec-once = kanshi
+  exec-once = hyprpaper
+  exec-once = nm-applet --indicator
+  exec-once = systemctl --user start hyprpolkitagent
+  exec-once = dunst
+  exec-once = wl-clipboard-history -t
+  exec-once = wl-paste --watch cliphist store
+  exec-once = rm "$HOME/.cache/cliphist/db"
+  exec-once = discord
+  ''; 
+in
+{
 
   options = {
     hyprlandModule.enable = lib.mkEnableOption "enables hyprland";
@@ -88,10 +102,16 @@
       "$prtsc" = "code:107";
 
       bind = [
-        # exec binds
+        # EXEC BINDS
+        # terminals
         "$mod, RETURN, exec, alacritty"
-        "$mod, D, exec, wofi --show drun"
+        "$mod&ALT, RETURN, exec, kitty"
+        
+        # file explorers
         "$mod, F, exec, thunar"
+        "$mod&ALT, F, exec, kitty -e yazi"
+
+        "$mod, D, exec, wofi --show drun"
         "$mod, B, exec, floorp"
         "$mod, O, exec, obsidian"
         "$mod, SPACE, exec, cliphist list | wofi --show dmenu -H 600 -W 900   | cliphist decode | wl-copy"
@@ -161,17 +181,8 @@
       ];
     };
 
-    wayland.windowManager.hyprland.extraConfig = ''
-      exec-once = kanshi
-      exec-once = hyprpaper --config /home/eden/.dotfiles/.config/hyprpaper.conf
-      exec-once = nm-applet --indicator
-      exec-once = systemctl --user start hyprpolkitagent
-      exec-once = dunst
-      exec-once = wl-clipboard-history -t
-      exec-once = wl-paste --watch cliphist store
-      exec-once = rm "$HOME/.cache/cliphist/db"
-      exec-once = discord
-
+    wayland.windowManager.hyprland.extraConfig = 
+      startExecs + ''
       animations {
         animation = windows, 1, 7, myBezier
         animation = windowsOut, 1, 7, default, popin 80%

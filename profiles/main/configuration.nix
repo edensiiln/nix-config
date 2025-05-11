@@ -13,7 +13,7 @@
   # custom modules
   hyprlandModule.enable = true;
   bluetoothModule.enable = true;
-  nvidiaDriversModule.enable = systemSettings.machine == "desktop";
+  #nvidiaDriversModule.enable = systemSettings.machine == "desktop";
   soundModule.enable = true;
   steamModule.enable = true;
 

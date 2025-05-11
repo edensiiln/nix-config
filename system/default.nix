@@ -4,7 +4,6 @@
     ./wm
     ./bluetooth.nix
     #./minecraft-servers.nix
-    ./nvidia-drivers.nix
     ./plex.nix
     ./printing.nix
     ./sound.nix

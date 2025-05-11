@@ -10,7 +10,7 @@
     nvfModule.enable = lib.mkEnableOption "enable nvf";
   };
 
-  config = {
+  config = lib.mkIf config.nvfModule.enable {
 
     programs.nvf = {
       enable = true;

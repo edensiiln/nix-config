@@ -16,6 +16,8 @@
   kanshiModule.enable = true;
   nvfModule.enable = true;
   waybarModule.enable = true;
+  yaziModule.enable = true;
+
 
   programs.home-manager.enable = true;
   home.username = "eden";
