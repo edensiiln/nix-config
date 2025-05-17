@@ -72,4 +72,4 @@ in {
       options = ["--cmd cd"];
     };
   };
-  }
+}

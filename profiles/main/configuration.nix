@@ -10,12 +10,13 @@
     ../../system
   ];
 
-  # custom modules
+  # CUSTOM MODULES
   hyprlandModule.enable = true;
   bluetoothModule.enable = true;
   #nvidiaDriversModule.enable = systemSettings.machine == "desktop";
   soundModule.enable = true;
   steamModule.enable = true;
+
 
   hardware.graphics.enable = true;
 
@@ -24,7 +25,7 @@
 
   programs.partition-manager.enable = true;
   
-  # Thunar
+  # THUNAR
   programs.thunar.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
@@ -35,7 +36,7 @@
     thunar-volman # automatic management of removable drives and media
   ];
 
-  # Shells
+  # SHELLS
   #environment.shells = with pkgs; [ zsh nushell ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;

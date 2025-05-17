@@ -11,12 +11,14 @@
   # CUSTOM MODULES
   alacrittyModule.enable = true;
   gitModule.enable = true;
+  nvfModule.enable = true;
+  yaziModule.enable = true;
+
+  # HYPRLAND
   hyprlandModule.enable = true;
   hyprpaperModule.enable = true;
   kanshiModule.enable = true;
-  nvfModule.enable = true;
   waybarModule.enable = true;
-  yaziModule.enable = true;
 
 
   programs.home-manager.enable = true;
@@ -68,18 +70,7 @@
     "electron-25.9.0"
   ];
 
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
+  home.file = {};
 
   home.file.".config/ranger/rc.conf".source = ../../.config/ranger/rc.conf;
   home.file.".config/ranger/rifle.conf".source = ../../.config/ranger/rifle.conf;
@@ -87,11 +78,6 @@
     source = ../../.config/ranger/scope.sh;
     executable = true;
   };
-
-  #services.udiskie = {
-  #  enable = true;
-  #  settings.program_options.file_manager = "${pkgs.xfce.thunar}/bin/thunar";
-  #};
 
   home.sessionVariables = {
     EDITOR = "nvim";
