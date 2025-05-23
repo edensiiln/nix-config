@@ -12,10 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #tagstudio = {
-    #  url = "github:TagStudioDev/TagStudio";  
-    #  #inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    tagstudio = {
+      url = "github:TagStudioDev/TagStudio";  
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nvf = {
       url = "github:notashelf/nvf";

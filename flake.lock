@@ -50,6 +50,27 @@
         "type": "github"
       }
     },
+    "flake-parts_2": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "tagstudio",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1725024810,
+        "narHash": "sha256-ODYRm8zHfLTH3soTFWE452ydPYz2iTvr9T8ftDMUQ3E=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "af510d4a62d071ea13925ce41c95e3dec816c01d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -344,7 +365,8 @@
         "minecraft-servers": "minecraft-servers",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_3",
-        "nvf": "nvf"
+        "nvf": "nvf",
+        "tagstudio": "tagstudio"
       }
     },
     "rust-overlay": {
@@ -396,6 +418,43 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "tagstudio": {
+      "inputs": {
+        "flake-parts": "flake-parts_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1746404947,
+        "narHash": "sha256-JmIgL8KnmRZ9k4RJPwVojRhccsathfMQzoiD6sI/ahE=",
+        "owner": "TagStudioDev",
+        "repo": "TagStudio",
+        "rev": "c14734d25eca05511e92864f7a08021df1d6f048",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TagStudioDev",
+        "repo": "TagStudio",
         "type": "github"
       }
     }
