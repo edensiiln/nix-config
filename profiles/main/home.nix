@@ -12,7 +12,6 @@
   alacrittyModule.enable = true;
   gitModule.enable = true;
   nvfModule.enable = true;
-  yaziModule.enable = true;
 
   # HYPRLAND
   hyprlandModule.enable = true;
@@ -44,7 +43,6 @@
     obsidian
     github-desktop
     #godot_4
-    alacritty
     kitty
     mpv
     vlc
@@ -62,7 +60,7 @@
     imagemagick
     swappy
     #udiskie
-  #] ++ [
+  # ] ++ [
     #inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
   ];
 
@@ -70,23 +68,23 @@
     "electron-25.9.0"
   ];
 
-  home.file = {};
-
-  home.file.".config/ranger/rc.conf".source = ../../.config/ranger/rc.conf;
-  home.file.".config/ranger/rifle.conf".source = ../../.config/ranger/rifle.conf;
-  home.file.".config/ranger/scope.sh" = {
-    source = ../../.config/ranger/scope.sh;
-    executable = true;
+  home.file = {
+    ".config/ranger/rc.conf".source = ../../.config/ranger/rc.conf;
+    ".config/ranger/rifle.conf".source = ../../.config/ranger/rifle.conf;
+    ".config/ranger/scope.sh" = {
+      source = ../../.config/ranger/scope.sh;
+      executable = true;
+    };
   };
 
   home.sessionVariables = {
+    TERMINAL = "alacritty";
     EDITOR = "nvim";
-
-    #RANGER_LOAD_DEFAULT_RC = "FALSE";
 
     CARGO_MOMMYS_ROLES = "Director/Handler/Mx./Mx. Diana";
     CARGO_MOMMYS_PRONOUNS = "her";
     CARGO_MOMMYS_LITTLE = "Weapon/Asset/Knife/doll";
     CARGO_MOMMYS_MOODS = "ominous";
   };
+
 }

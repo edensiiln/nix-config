@@ -46,15 +46,14 @@
       ];
     };
 
-    tasks = {
-      micro_workers = 5;
-      macro_workers = 10;
-      bizarre_retry = 5;
+      tasks = {
+        micro_workers = 5;
+        macro_workers = 10;
+        bizarre_retry = 5;
+      };
     };
-    };
-
     
-    programs.yazi.theme.filetype.rules =  with config.colorscheme.palette; [
+    programs.yazi.theme.filetype.rules = with config.colorscheme.palette; [
       {
         mime = "image/*";
         fg = "#${base0B}";
@@ -67,7 +66,6 @@
         mime = "audio/*";
         fg = "#${base08}";
       }
-
 
     ];
   };

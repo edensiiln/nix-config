@@ -4,8 +4,12 @@
   ...
 }: {
   imports = [
-    ../../home/sh.nix
+    ../../home
   ];
+
+  # CUSTOM MODULES
+  gitModule.enable = true;
+  nvfModule.enable = true;
 
   programs.home-manager.enable = true;
   home.username = "arkserver";
@@ -19,18 +23,7 @@
     yt-dlp
   ];
 
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
+  home.file = {};
 
   home.file.".config/ranger/rc.conf".source = ../../.config/ranger/rc.conf;
   home.file.".config/ranger/rifle.conf".source = ../../.config/ranger/rifle.conf;
@@ -41,7 +34,6 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-
-    #RANGER_LOAD_DEFAULT_RC = "FALSE";
   };
+
 }

@@ -13,7 +13,6 @@
   # CUSTOM MODULES
   hyprlandModule.enable = true;
   bluetoothModule.enable = true;
-  #nvidiaDriversModule.enable = systemSettings.machine == "desktop";
   soundModule.enable = true;
   steamModule.enable = true;
 
@@ -35,6 +34,8 @@
     thunar-archive-plugin # Requires an Archive manager like file-roller, ark, etc
     thunar-volman # automatic management of removable drives and media
   ];
+
+  #virtualisation.waydroid.enable = true;
 
   # SHELLS
   #environment.shells = with pkgs; [ zsh nushell ];
