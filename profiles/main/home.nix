@@ -42,7 +42,8 @@
 
     obsidian
     github-desktop
-    #godot_4
+    godot
+
     kitty
     mpv
     vlc
@@ -60,7 +61,7 @@
     imagemagick
     swappy
     #udiskie
-  # ] ++ [
+    #] ++ [
     #inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
   ];
 
