@@ -14,7 +14,7 @@
     programs.yazi.enableZshIntegration = true;
     programs.yazi.settings = {
 
-      manager.ratio = [
+      mgr.ratio = [
         1
         3
         4
