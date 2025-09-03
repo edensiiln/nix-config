@@ -74,6 +74,7 @@
     ffmpeg
 
     prismlauncher
+    cockatrice
 
     kdePackages.ark # file archiver used by thunar
   ];
