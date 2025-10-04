@@ -11,7 +11,7 @@
   # CUSTOM MODULES
   alacrittyModule.enable = true;
   gitModule.enable = true;
-  nvfModule.enable = true;
+  #nvfModule.enable = true;
 
   # HYPRLAND
   hyprlandModule.enable = true;
@@ -33,7 +33,7 @@
   home.packages = with pkgs; [
     headsetcontrol
     firefox
-    floorp
+    floorp-bin
     libreoffice
 
     discord

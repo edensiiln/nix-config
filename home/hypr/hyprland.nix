@@ -88,9 +88,9 @@ in
       #  new_is_master = true;
       #};
 
-      gestures = {
-        workspace_swipe = "off";
-      };
+      #gestures = {
+      #  workspace_swipe = "off";
+      #};
 
       misc = {
         force_default_wallpaper = "0";

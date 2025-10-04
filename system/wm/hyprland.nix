@@ -55,7 +55,7 @@
       libnotify
       hyprpaper # wallpaper daemon
       wofi
-      rofi-wayland
+      rofi
       wl-clipboard
       cliphist
       grim # screenshots
