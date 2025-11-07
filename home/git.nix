@@ -13,18 +13,20 @@
     programs.git-credential-oauth.enable = true;
     programs.gitui.enable = true;
 
+    # https://www.youtube.com/watch?v=G3NJzFX6XhY
+
+    programs.diff-so-fancy.enable = true;
+    programs.diff-so-fancy.enableGitIntegration = true;
+    programs.diff-so-fancy.settings.markEmptyLines = true;
+
     programs.git = {
       enable = true;
 
-      userName = "edensiiln";
-      userEmail = "siiln@protonmail.com";
-      
-      # https://www.youtube.com/watch?v=G3NJzFX6XhY
-      
-      diff-so-fancy.enable = true;
-      diff-so-fancy.markEmptyLines = false;
+      settings = {
 
-      extraConfig = {
+        user.name = "edensiiln";
+	user.email = "siiln@protonmail.com";
+
         core.editor = "nvim";
         core.whitespace = "trailing-space,space-before-tab";
 

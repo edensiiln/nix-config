@@ -21,6 +21,12 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ftlman = {
+        url = "github:afishhh/ftlman";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };	
+
   };
 
   outputs = {
@@ -34,8 +40,8 @@
 
     # ~~~ SYSTEM SETTINGS ~~~ #
     systemSettings = {
-      profile = "main"; # main, laptop, homelab
-      machine = "desktop"; # desktop, thinkpad, homelab
+      profile = "main"; # main, homelab
+      machine = "desktop"; # desktop, thinkpad, arkserver
 
       # DEFAULTS
       system = "x86_64-linux";
