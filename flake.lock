@@ -154,11 +154,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754766060,
-        "narHash": "sha256-/+rf/aE7m2Kqq/vQXTc/xap4BsJ9rcLauz6B6OqZyOM=",
+        "lastModified": 1762270353,
+        "narHash": "sha256-7QcHmNAltsdUatXxeU9wybm8nPobPRntccTmwwE9C9o=",
         "owner": "afishhh",
         "repo": "ftlman",
-        "rev": "23204a139c450016e1510a9e1bd87a322c40aa25",
+        "rev": "4cf43531069781c7e4afabcbf843437bedc75b60",
         "type": "github"
       },
       "original": {
@@ -174,11 +174,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762447448,
-        "narHash": "sha256-BFhoqL231hyTZ7piR+8FgDJby48oWRN8+g3b1uvvtX8=",
+        "lastModified": 1762721397,
+        "narHash": "sha256-E428EuouA4nFTNlLuqlL4lVR78X+EbBIqDqsBFnB79w=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2907788315a73d3292140b4d59b5d95796565625",
+        "rev": "b8645b18b0f5374127bbade6de7381ef0b3d5720",
         "type": "github"
       },
       "original": {
@@ -343,11 +343,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1762111121,
-        "narHash": "sha256-4vhDuZ7OZaZmKKrnDpxLZZpGIJvAeMtK6FKLJYUtAdw=",
+        "lastModified": 1762596750,
+        "narHash": "sha256-rXXuz51Bq7DHBlfIjN7jO8Bu3du5TV+3DSADBX7/9YQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b3d51a0365f6695e7dd5cdf3e180604530ed33b4",
+        "rev": "b6a8526db03f735b89dd5ff348f53f752e7ddc8e",
         "type": "github"
       },
       "original": {
@@ -367,11 +367,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1762353527,
-        "narHash": "sha256-67/sO6zaf02ZPz2s6k8swg6WMExz0gls7o4jmoljwl8=",
+        "lastModified": 1762622004,
+        "narHash": "sha256-NpzzgaoMK8aRHnndHWbYNKLcZN0r1y6icCoJvGoBsoE=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "3d3cd879783be1457edfb42a38f392071335edd1",
+        "rev": "09470524a214ed26633ddc2b6ec0c9bf31a8b909",
         "type": "github"
       },
       "original": {
@@ -462,11 +462,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1759912746,
-        "narHash": "sha256-RWxj5ILRtg7LMuDnuB0k1XoVB3jFCjNdBze5e3zjpM8=",
+        "lastModified": 1762561087,
+        "narHash": "sha256-VfdjHPe36zclJMCcpvOZRZPwK63fED0xhIQrTELSXWA=",
         "owner": "TagStudioDev",
         "repo": "TagStudio",
-        "rev": "615978e5a60cb62095bfcd7cce96a2ae15ee93d0",
+        "rev": "0529925cd1f1e52d767db13969a531dabeade0a5",
         "type": "github"
       },
       "original": {
