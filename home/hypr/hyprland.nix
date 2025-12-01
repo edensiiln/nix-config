@@ -96,6 +96,10 @@ in
         force_default_wallpaper = "0";
       };
 
+      ecosystem = {
+        no_update_news = true;
+      };
+
       # BINDS
 
       "$mod" = "SUPER";
