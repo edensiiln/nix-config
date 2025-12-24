@@ -90,7 +90,21 @@
   programs.nix-ld.enable = true;
   #programs.nix-ld.libraries = with pkgs; [];
 
-  programs.ssh.startAgent = true;
+  # SSH
+  programs.ssh = {
+    startAgent = true;
+    extraConfig = "
+      Host desktop
+        hostname 192.168.1.56
+	Port 22
+	User eden
+
+      Host laptop
+        hostname 192.168.1.77
+	Port 22
+	User eden
+    ";
+  };
 
   # OpenSSH daemon
   services.openssh.enable = true;
