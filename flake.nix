@@ -40,8 +40,8 @@
 
     # ~~~ SYSTEM SETTINGS ~~~ #
     systemSettings = {
-      profile = "main"; # main, homelab
-      machine = "desktop"; # desktop, thinkpad, arkserver
+      profile = "main"; # main, laptop, homelab
+      machine = "thinkpad"; # desktop, thinkpad, homelab
 
       # DEFAULTS
       system = "x86_64-linux";

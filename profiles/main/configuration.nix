@@ -98,11 +98,13 @@
         hostname 192.168.1.56
 	Port 22
 	User eden
+	IdentityFile ~/.ssh/desktop
 
       Host laptop
         hostname 192.168.1.77
 	Port 22
 	User eden
+	IdentityFile ~/.ssh/laptop
     ";
   };
 
