@@ -30,7 +30,7 @@
   services.tumbler.enable = true; # Thumbnail support for images
   programs.xfconf.enable = true; # prefrence changes discarded without
 
-  programs.thunar.plugins = with pkgs.xfce; [
+  programs.thunar.plugins = with pkgs; [
     thunar-archive-plugin # Requires an Archive manager like file-roller, ark, etc
     thunar-volman # automatic management of removable drives and media
   ];
