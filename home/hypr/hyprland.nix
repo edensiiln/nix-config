@@ -181,7 +181,7 @@ in
 
       windowrule = [
         #"float, class:^(org.pulseaudio.pavucontrol)$"
-        "float, class:org.pulseaudio.pavucontrol"
+        "float on, match:class org.pulseaudio.pavucontrol"
       ];
     };
 

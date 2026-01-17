@@ -15,9 +15,12 @@
         ipc = "on";
         splash = false;
 
-        preload = ["~/.dotfiles/backgrounds/pink-clouds.png"];
-
-        wallpaper = [",~/.dotfiles/backgrounds/pink-clouds.png"];
+        wallpaper = [
+	  {
+	    monitor = "";
+	    path = "~/.dotfiles/backgrounds/pink-clouds.png";
+	  }
+	];
       };
     };
     
