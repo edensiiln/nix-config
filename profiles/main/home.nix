@@ -44,6 +44,8 @@
     github-desktop
     godot
 
+    protonplus
+
     kitty
     mpv
     vlc
