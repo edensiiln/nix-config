@@ -36,6 +36,9 @@
     floorp-bin
     libreoffice
 
+    qbittorrent
+    tor-browser
+
     discord
     #webcord
     revolt-desktop

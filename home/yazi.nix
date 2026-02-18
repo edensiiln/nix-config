@@ -12,6 +12,7 @@
   config = lib.mkIf config.yaziModule.enable {
     programs.yazi.enable = true;
     programs.yazi.enableZshIntegration = true;
+    programs.yazi.shellWrapperName = "y";
     programs.yazi.settings = {
 
       mgr.ratio = [

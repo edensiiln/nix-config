@@ -48,6 +48,21 @@
           }
         ];
       };
+    
+    } else if systemSettings.profile == "main"
+    then {
+      hostName = systemSettings.hostname;
+      networkmanager.enable = true;
+      
+      firewall = {
+        enable = true;
+	allowedTCPPorts = [
+          443
+	];
+	allowedUDPPorts = [
+          1194
+	];
+      };
 
     } else {
       hostName = systemSettings.hostname;

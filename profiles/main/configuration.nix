@@ -15,6 +15,7 @@
   bluetoothModule.enable = true;
   soundModule.enable = true;
   steamModule.enable = true;
+  custom.services.nordvpn.enable = true;
 
 
   hardware.graphics.enable = true;
@@ -69,7 +70,7 @@
     tldr # info
     libqalculate # calculator
     ntfs3g
-    xorg.xhost
+    xhost
     docker
     ffmpeg
 
@@ -86,6 +87,7 @@
     #shell = pkgs.nushell;
     #packages = with pkgs; [];
   };
+  users.groups.nordvpn.members = [userSettings.username];
 
   programs.nix-ld.enable = true;
   #programs.nix-ld.libraries = with pkgs; [];

@@ -8,6 +8,7 @@
     ./printing.nix
     ./sound.nix
     ./steam.nix
+    ./nordvpn.nix
 
     #enabled by default
     ./fonts.nix
