@@ -30,7 +30,7 @@
     nushell
     zellij
     btop
-    neofetch
+    fastfetch
     ranger
     rustup
     rustc

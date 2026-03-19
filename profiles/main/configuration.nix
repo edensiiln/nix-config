@@ -54,7 +54,7 @@
     nushell
     zellij
     btop
-    neofetch
+    fastfetch
     ranger
     yazi
 
