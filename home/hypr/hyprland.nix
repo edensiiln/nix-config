@@ -15,6 +15,7 @@ let
   exec-once = wl-paste --watch cliphist store
   exec-once = rm "$HOME/.cache/cliphist/db"
   exec-once = discord
+  exec-once = nordvpn
   ''; 
 in
 {
