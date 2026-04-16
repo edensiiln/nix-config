@@ -34,7 +34,7 @@ in {
       firewall = {
         enable = true;
         allowedTCPPorts = [
-          ${MCPort}
+          MCPort
         ];
       };
 
@@ -44,7 +44,7 @@ in {
         externalInterface = "eno1";
         forwardPorts = [
           {
-            sourcePort = ${MCPort};
+            sourcePort = MCPort;
             proto = "tcp";
             destination = "192.168.1.1:${MCPort}";
           }

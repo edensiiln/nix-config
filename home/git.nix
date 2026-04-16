@@ -42,7 +42,7 @@
         diff.renames = "copies";
         diff.interHunkContext = 10;
 
-        pager.diff = "diff-so-fancy | $PAGER";
+        #pager.diff = "diff-so-fancy | $PAGER";
 
         #diff-so-fancy.markEmptyLines = false;
 
@@ -79,6 +79,9 @@
 
         pager.branch = false;
         pager.tag = false;
+
+        signing.format = "openpgp";
+
       };
     };
   };
