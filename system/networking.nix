@@ -4,7 +4,9 @@
   lib,
   systemSettings,
   ...
-}: {
+}: let
+  MCPort = 25565;
+in {
   options = {
     networkingModule.enable = lib.mkEnableOption "enable networking";
   };
@@ -23,7 +25,7 @@
           table ip nat {
             chain PREROUTING {
               type nat hook prerouting priority dstnat; policy accept;
-              iifname "wlp4s0" tcp dport 25565 dnat to 192.168.1.1:25565
+              iifname "wlp4s0" tcp dport ${MCPort} dnat to 192.168.1.1:${MCPort}
             }
           }
 	      '';
@@ -32,7 +34,7 @@
       firewall = {
         enable = true;
         allowedTCPPorts = [
-          25565
+          ${MCPort}
         ];
       };
 
@@ -42,9 +44,9 @@
         externalInterface = "eno1";
         forwardPorts = [
           {
-            sourcePort = 25565;
+            sourcePort = ${MCPort};
             proto = "tcp";
-            destination = "192.168.1.1:25565";
+            destination = "192.168.1.1:${MCPort}";
           }
         ];
       };
