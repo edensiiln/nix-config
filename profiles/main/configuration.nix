@@ -109,13 +109,13 @@
 	IdentityFile ~/.ssh/laptop
       
       Host arkserver
-        hostname 192.168.1.63
+        hostname haven-media-nexus.duckdns.org
 	Port 0102
 	User siiln
 	IdentityFile ~/.ssh/arkserver
 
       Host nexus
-        hostname 192.168.1.63
+        hostname haven-media-nexus.duckdns.org
 	Port 0102
 	User nexus
 	Identityfile ~/.ssh/nexus
