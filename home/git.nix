@@ -2,14 +2,12 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options = {
     gitModule.enable = lib.mkEnableOption "enable git";
   };
 
   config = lib.mkIf config.gitModule.enable {
-    
     programs.git-credential-oauth.enable = true;
     programs.gitui.enable = true;
 
@@ -23,9 +21,8 @@
       enable = true;
 
       settings = {
-
         user.name = "edensiiln";
-	user.email = "siiln@protonmail.com";
+        user.email = "siiln@protonmail.com";
 
         core.editor = "nvim";
         core.whitespace = "trailing-space,space-before-tab";
@@ -81,7 +78,6 @@
         pager.tag = false;
 
         signing.format = "openpgp";
-
       };
     };
   };

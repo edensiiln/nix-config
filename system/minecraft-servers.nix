@@ -33,7 +33,7 @@
   ];
 in {
   imports = [inputs.minecraft-servers.module];
-  
+
   options = {
     minecraftServersModule.enable = lib.mkEnableOption "enable minecraft-servers";
   };

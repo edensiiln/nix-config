@@ -5,7 +5,6 @@
   callPackage,
   ...
 }: {
-
   options = {
     xfceModule.enable = lib.mkEnableOption "enable xfce";
   };

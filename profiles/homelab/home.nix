@@ -35,5 +35,4 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-
 }

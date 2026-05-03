@@ -3,23 +3,20 @@
   config,
   pkgs,
   ...
-}: 
-let
- startExecs = ''
-  exec-once = kanshi
-  exec-once = hyprpaper
-  exec-once = nm-applet --indicator
-  exec-once = systemctl --user start hyprpolkitagent
-  exec-once = dunst
-  exec-once = wl-clipboard-history -t
-  exec-once = wl-paste --watch cliphist store
-  exec-once = rm "$HOME/.cache/cliphist/db"
-  exec-once = discord
-  exec-once = nordvpn
-  ''; 
-in
-{
-
+}: let
+  startExecs = ''
+    exec-once = kanshi
+    exec-once = hyprpaper
+    exec-once = nm-applet --indicator
+    exec-once = systemctl --user start hyprpolkitagent
+    exec-once = dunst
+    exec-once = wl-clipboard-history -t
+    exec-once = wl-paste --watch cliphist store
+    exec-once = rm "$HOME/.cache/cliphist/db"
+    exec-once = discord
+    exec-once = nordvpn
+  '';
+in {
   options = {
     hyprlandModule.enable = lib.mkEnableOption "enables hyprland";
   };
@@ -111,7 +108,7 @@ in
         # terminals
         "$mod, RETURN, exec, alacritty"
         "$mod&ALT, RETURN, exec, kitty"
-        
+
         # file explorers
         "$mod, F, exec, thunar"
         "$mod&ALT, F, exec, kitty -e yazi"
@@ -186,16 +183,17 @@ in
       ];
     };
 
-    wayland.windowManager.hyprland.extraConfig = 
-      startExecs + ''
-      animations {
-        animation = windows, 1, 7, myBezier
-        animation = windowsOut, 1, 7, default, popin 80%
-        animation = border, 1, 10, default
-        animation = borderangle, 1, 8, default
-        animation = fade, 1, 7, default
-        animation = workspaces, 1, 6, default
-      }
-    '';
+    wayland.windowManager.hyprland.extraConfig =
+      startExecs
+      + ''
+        animations {
+          animation = windows, 1, 7, myBezier
+          animation = windowsOut, 1, 7, default, popin 80%
+          animation = border, 1, 10, default
+          animation = borderangle, 1, 8, default
+          animation = fade, 1, 7, default
+          animation = workspaces, 1, 6, default
+        }
+      '';
   };
 }

@@ -9,8 +9,7 @@
     ./yazi.nix
     ./sh.nix
   ];
-  
+
   yaziModule.enable = lib.mkDefault true;
   shModule.enable = lib.mkDefault true;
-
 }

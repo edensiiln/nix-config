@@ -17,14 +17,13 @@
   steamModule.enable = true;
   custom.services.nordvpn.enable = true;
 
-
   hardware.graphics.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   programs.partition-manager.enable = true;
-  
+
   # THUNAR
   programs.thunar.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities

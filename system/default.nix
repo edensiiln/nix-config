@@ -16,7 +16,7 @@
     ./networking.nix
     ./polkit.nix
   ];
-  
+
   fontsModule.enable = lib.mkDefault true;
   localeModule.enable = lib.mkDefault true;
   networkingModule.enable = lib.mkDefault true;

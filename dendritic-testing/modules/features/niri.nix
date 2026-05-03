@@ -1,13 +1,25 @@
-{ self, inputs, ... }: {
-
-  flake.nixosModules.niri = { pkgs, lib, ... }: {
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.niri = {
+    pkgs,
+    lib,
+    ...
+  }: {
     programs.niri = {
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.edenNiri;
     };
   };
 
-  perSystem = { pkgs, lib, self', ... }: {
+  perSystem = {
+    pkgs,
+    lib,
+    self',
+    ...
+  }: {
     packages.edenNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
@@ -22,12 +34,11 @@
         layout.gaps = 5;
 
         binds = {
-          "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
+          "Mod+Return".spawn-sh = lib.getExe pkgs.alacritty;
           "Mod+Q".close-window = null;
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.edenNoctalia} ipc call launcher toggle";
         };
       };
     };
   };
-
 }

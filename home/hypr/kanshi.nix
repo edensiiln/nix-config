@@ -2,8 +2,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   options = {
     kanshiModule.enable = lib.mkEnableOption "enable kanshi";
   };
@@ -12,7 +11,7 @@
     services.kanshi = {
       enable = true;
       systemdTarget = "hyprland-session.target";
-    
+
       settings = [
         {
           profile.name = "main";

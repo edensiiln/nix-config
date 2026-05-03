@@ -4,7 +4,6 @@
   lib,
   ...
 }: {
-
   options = {
     waybarModule.enable = lib.mkEnableOption "enable waybar";
   };

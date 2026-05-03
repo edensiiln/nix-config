@@ -11,14 +11,13 @@
   # CUSTOM MODULES
   alacrittyModule.enable = true;
   gitModule.enable = true;
-  #nvfModule.enable = true;
+  nvfModule.enable = true;
 
   # HYPRLAND
   hyprlandModule.enable = true;
   hyprpaperModule.enable = true;
   kanshiModule.enable = true;
   waybarModule.enable = true;
-
 
   programs.home-manager.enable = true;
   home.username = "eden";
@@ -94,5 +93,4 @@
     CARGO_MOMMYS_LITTLE = "Weapon/Asset/Knife/doll";
     CARGO_MOMMYS_MOODS = "ominous";
   };
-
 }

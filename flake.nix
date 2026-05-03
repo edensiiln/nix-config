@@ -13,7 +13,7 @@
     };
 
     tagstudio = {
-      url = "github:TagStudioDev/TagStudio";  
+      url = "github:TagStudioDev/TagStudio";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,10 +23,9 @@
     };
 
     ftlman = {
-        url = "github:afishhh/ftlman";
-	inputs.nixpkgs.follows = "nixpkgs";
-    };	
-
+      url = "github:afishhh/ftlman";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -41,7 +40,7 @@
     # ~~~ SYSTEM SETTINGS ~~~ #
     systemSettings = {
       profile = "main"; # main, laptop, homelab
-      machine = "thinkpad"; # desktop, thinkpad, homelab
+      machine = "desktop"; # desktop, thinkpad, homelab
 
       # DEFAULTS
       system = "x86_64-linux";

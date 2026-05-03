@@ -5,23 +5,21 @@
   ...
 }: {
   imports = [inputs.nvf.homeManagerModules.default];
-  
+
   options = {
     nvfModule.enable = lib.mkEnableOption "enable nvf";
   };
 
   config = lib.mkIf config.nvfModule.enable {
-
     programs.nvf = {
       enable = true;
 
       settings = {
         vim = {
-
           formatter.conform-nvim = {
             enable = true;
             setupOpts.formatters-by-ft = {
-              nix = [ "alejandra" ];
+              nix = ["alejandra"];
             };
           };
 
@@ -31,7 +29,6 @@
               signs = true;
               #virtual_lines = true;
               virtual_text = true;
-
             };
           };
 
@@ -68,16 +65,9 @@
             enableTreesitter = true;
 
             nix.enable = true;
-            nix.lsp.server = "nixd";
-            nix.lsp.options = {
-              nixos = {
-                expr = (builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.eden.options;
-              };
-              home_manager = {
-                expr = (builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations.eden.options;
-              };
-            };
+            nix.lsp.servers = ["nixd"];
 
+            ts.enable = true;
             rust.enable = true;
           };
 

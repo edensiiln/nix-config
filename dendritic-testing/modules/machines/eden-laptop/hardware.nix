@@ -1,19 +1,32 @@
-{ self, inputs, ... }: {
-
-  flake.nixosModules.edenDesktopHardware = { config, lib, pkgs, modulesPath, ... }: {
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.edenLaptopHardware = {
+    config,
+    lib,
+    pkgs,
+    modulesPath,
+    ...
+  }: {
     imports = [
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-    boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+    boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
     boot.initrd.kernelModules = [];
-    boot.kernelModules = ["kvm-intel"];
+    boot.kernelModules = [];
     boot.extraModulePackages = [];
 
     fileSystems."/" = {
-      #device = "/dev/disk/by-uuid/dc81cebf-01e8-48dc-9fea-02fae24de357";
-      device = "/dev/disk/by-label/NIXOS";
+      device = "/dev/disk/by-uuid/e3f780d9-7b01-482c-9a57-ca8e18052d4e";
       fsType = "ext4";
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/D1FF-174B";
+      fsType = "vfat";
     };
 
     swapDevices = [];
@@ -23,11 +36,10 @@
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
     networking.useDHCP = lib.mkDefault true;
-    # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+    # networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault true;
     # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
-
 }
