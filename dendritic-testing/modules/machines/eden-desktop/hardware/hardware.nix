@@ -18,6 +18,13 @@
     boot.initrd.kernelModules = [];
     boot.kernelModules = ["kvm-intel"];
     boot.extraModulePackages = [];
+    boot.loader = {
+      grub = {
+        enable = true;
+        device = "/dev/nvme0n1";
+        useOSProber = true;
+      };
+    };
 
     fileSystems."/" = {
       #device = "/dev/disk/by-uuid/dc81cebf-01e8-48dc-9fea-02fae24de357";
