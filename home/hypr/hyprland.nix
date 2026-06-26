@@ -7,6 +7,7 @@
   startExecs = ''
     exec-once = kanshi
     exec-once = hyprpaper
+    exec-once = hypridle
     exec-once = nm-applet --indicator
     exec-once = systemctl --user start hyprpolkitagent
     exec-once = dunst
@@ -78,8 +79,6 @@ in {
       # LAYOUTS
 
       dwindle = {
-        pseudotile = false;
-        preserve_split = true;
       };
 
       #master = {
@@ -136,7 +135,7 @@ in {
 
         # dwindle
         "$mod, P, pseudo"
-        "$mod, J, togglesplit"
+        "$mod, J, layoutmsg, togglesplit"
 
         # switch workspaces
         "$mod, 1, workspace, 1"

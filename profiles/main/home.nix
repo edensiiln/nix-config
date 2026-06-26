@@ -15,6 +15,7 @@
 
   # HYPRLAND
   hyprlandModule.enable = true;
+  hypridleModule.enable = true;
   hyprpaperModule.enable = true;
   kanshiModule.enable = true;
   waybarModule.enable = true;
@@ -68,8 +69,8 @@
     #udiskie
     #] ++ [
     #inputs.ftlman.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ] ++ [
-    inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
+    #] ++ [
+    #inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

@@ -18,25 +18,25 @@
         4
       ];
 
-      sort_by = "natural";
-      sort_sensitive = true;
-      sort_reverse = false;
-      sort_dir_first = true;
-      sort_translit = true;
+      sort-by = "natural";
+      sort-sensitive = true;
+      sort-reverse = false;
+      sort-dir-first = true;
+      sort-translit = true;
       linemode = "none";
-      show_hidden = true;
-      show_symlink = true;
+      show-hidden = true;
+      show-symlink = true;
       scrolloff = 5;
 
       preview = {
-        image_filter = "lanczos3";
-        image_quality = 90;
-        tab_size = 1;
-        max_width = 600;
-        max_height = 900;
-        cache_dir = "";
-        ueberzug_scale = 1;
-        ueberzug_offset = [
+        image-filter = "lanczos3";
+        image-quality = 90;
+        tab-size = 1;
+        max-width = 600;
+        max-height = 900;
+        cache-dir = "";
+        ueberzug-scale = 1;
+        ueberzug-offset = [
           0
           0
           0
@@ -45,10 +45,10 @@
       };
 
       tasks = {
-        image_bound = [0 0];
-        micro_workers = 5;
-        macro_workers = 10;
-        bizarre_retry = 5;
+        image-bound = [0 0];
+        micro-workers = 5;
+        macro-workers = 10;
+        bizarre-retry = 5;
       };
     };
 

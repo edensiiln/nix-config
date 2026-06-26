@@ -25,6 +25,15 @@
       settings = {
         spawn-at-startup = [
           (lib.getExe self'.packages.edenNoctalia)
+          (lib.getExe pkgs.kanshi)
+          (lib.getExe pkgs.discord)
+          (lib.getExe self'.packages.edenNordvpn)
+        ];
+
+        spawn-sh-at-startup = [
+          "wl-clipboard-history -t"
+          "wl-paste --watch cliphist store"
+          "rm $HOME/.cache/cliphist/db"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
