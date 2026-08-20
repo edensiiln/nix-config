@@ -8,7 +8,7 @@
     lib,
     ...
   }: {
-    services.xserver.displayManager.setupCommands = lib.getExe self.packages."${pkgs.system}".edenKanshi;
+    #services.xserver.displayManager.setupCommands = lib.getExe self.packages."${pkgs.system}".edenKanshi;
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = true;

@@ -22,6 +22,20 @@
       };
     };
 
+    services.xserver.videoDrivers = ["nvidia"];
+    hardware.nvidia = {
+      modesetting.enable = true;
+
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+
+      open = false;
+
+      nvidiaSettings = true;
+
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
+
     fileSystems."/" = {
       #device = "/dev/disk/by-uuid/dc81cebf-01e8-48dc-9fea-02fae24de357";
       device = "/dev/disk/by-label/NIXOS";
