@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.git = {
+  flake.nixosModules.edenGit = {
     pkgs,
     lib,
     ...
@@ -26,7 +26,7 @@
           user.name = "edensiiln";
           user.email = "siiln@protonmail.com";
 
-          core.editor = lib.getExe pkgs.nvim;
+          core.editor = lib.getExe pkgs.neovim;
           core.whitespace = "trailing-space,space-before-tab";
 
           url."git@github.com:".insteadOf = "gh";

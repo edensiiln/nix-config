@@ -1,9 +1,5 @@
 {
-  self,
-  inputs,
-  ...
-}: {
-  flake.nixosModules.edenDesktopHardware = {
+  flake.nixosModules.edenTower = {
     config,
     lib,
     pkgs,

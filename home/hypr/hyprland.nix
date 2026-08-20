@@ -31,7 +31,7 @@ in {
       env = "XCURSOR_SIZE,24";
 
       input = {
-        kb_layout = "us";
+        kb_layout = "us,jp";
         kb_variant = "";
         kb_model = "";
         kb_options = "";
@@ -182,6 +182,7 @@ in {
       ];
     };
 
+    #wayland.windowManager.hyprland.configType = "lua";
     wayland.windowManager.hyprland.extraConfig =
       startExecs
       + ''

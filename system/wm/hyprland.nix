@@ -14,8 +14,13 @@
       xwayland.enable = true;
     };
 
-    services.greetd = {
+    services.displayManager.sddm = {
       enable = true;
+      wayland.enable = true;
+    };
+
+    services.greetd = {
+      enable = false;
       settings = {
         default_session.command = ''
                ${pkgs.tuigreet}/bin/tuigreet \

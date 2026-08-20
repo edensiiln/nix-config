@@ -1,11 +1,35 @@
 { self, inputs, ... }: {
-  
+
+  flake.nixosModules.edenNetworking = {pkgs, lib, ... }: {
+    networking.networkmanager.enable = true;
+  };
+
   flake.nixosModules.ssh = {pkgs, lib, ... }: {
     services.openssh.enable = true;
     programs.ssh = {
       enable = true;
       package = self.packages.${pkgs.stdenv.hostplatform.system}.edenSSH;
-    }
+    };
+
+    security.polkit = {
+      enable = true;
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("users")
+              && (
+                action.id == "org.freedesktop.login1.reboot" ||
+                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+              )
+            )
+          {
+            return polkit.Result.YES;
+          }
+        })
+      '';
+    };
   };
 
   perSystem = { pkgs, lib, ... }: {
@@ -37,7 +61,5 @@
           Identityfile ~/.ssh/nexus
       ";
     };
-  
   };
-
 }
