@@ -8,6 +8,10 @@
     lib,
     ...
   }: {
+
+    #programs.gitui.enable = true;
+    #programs.git-credential-oauth.enable = true;
+
     programs.git = {
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.edenGit;

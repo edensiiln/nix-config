@@ -28,6 +28,14 @@
     #programs.niri.enable = true;
     #programs.niri.package = selfpkgs.edenNiri;
     
+    #programs.discord.enable = true;
+    #programs.obsidian.enable = true;
+
+
+    environment.systemPackages = with pkgs; [
+     discord 
+    ];
+
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

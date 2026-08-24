@@ -19,8 +19,7 @@
     pkgs,
     lib,
     self',
-    ...
-  }: {
+    ... }: {
     packages.edenNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
 
@@ -47,21 +46,32 @@
 
         binds = {
           "Mod+Return".spawn-sh = lib.getExe pkgs.alacritty;
-            "Mod+Q".close-window = _: { };
-            "Mod+S".spawn-sh = "${lib.getExe self'.packages.edenNoctalia} ipc call launcher toggle";
+          "Mod+Q".close-window = _: { };
+          "Mod+S".spawn-sh = "${lib.getExe self'.packages.edenNoctalia} ipc call launcher toggle";
         };
+
+	#outputs."DP-1" = {
+	  #position.x = 0;
+	  #position.y = 0;
+	  #transform.rotation = 90;
+	#};
+	outputs."DP-1".transform = "90";
+
+        #outputs."DP-1".name = "monitor-A";
+        #outputs."HDMI-A-1".name = "monitor-B";
+        #outputs."DP-3".name = "monitor-C";
+
+	#outputs."HDMI-A-1".position = ["${"x=1080"}" "${"y=840"}"];
+	#outputs."HDMI-A-1" = { "position x=1080 y=840" };
+	#outputs."HDMI-A-1".position.x = 1080;
+	#outputs."HDMI-A-1".position.y = 840;
+	#outputs."DP-3".position = { x = 3000; y = 840; };
+	#outputs."DP-3".position.x = "3000";
+	#outputs."DP-3".position.y = "840";
+
+	
+
       };
-    };#.override {
-     #   libdisplay-info = libdisplay-info.overrideAttrs (finalAttrs: {
-     #     version = "0.3.0";
-#	  src = fetchFromGitLab {
-#            domain = "gitlab.freedesktop.org";
-#	    owner = "emersion";
-#	    repo = "libdisplay-info";
-#	    rev = finalAttrs.version;
-#	    sha256 = "sha-256nXf2KGovNKvcch1H1zKBkAOeySMJgxMpbi5z9gLrdc=";
-#	  };
-#	});
-#      };
+    };
   };
 }
