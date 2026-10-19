@@ -23,11 +23,27 @@
     cargo = "cargo mommy";
   };
 in {
+
+  flake.nixosModules.edenShells = {
+    pkgs,
+    lib,
+    self',
+    ...
+  }: {
+    
+  };
+
+
   flake.homeModules.edenShells = {
     pkgs,
     lib,
+    self',
     ...
   }: {
+    imports = [
+      self.homeModules.edenNvf
+    ];
+
     programs = {
 
       # SHELLS
@@ -73,10 +89,10 @@ in {
         enableZshIntegration = true;
         #enableNushellIntegration = true;
       };
-      
+       
       man.enable = true;
       btop.enable = true;
-      neovim.enable = true;
+      #neovim.enable = true;
 
     };
 
@@ -92,6 +108,7 @@ in {
       unzip
       libqalculate
     ];
-    home.sessionVariables.EDITOR = lib.getExe pkgs.neovim;
+    #home.sessionVariables.EDITOR = lib.getExe self.packages.nvf;
+    home.sessionVariables.EDITOR = "nvim";
   };
 }

@@ -1,31 +1,20 @@
 {
-  self,
-  config,
   inputs,
   ...
 }: {
-  flake.nixosModules.nvf = {
-    pkgs,
-    lib,
+  flake.homeModules.edenNvf = {
     ...
   }: {
+
+    imports = [ inputs.nvf.homeManagerModules.default ];
+
     programs.nvf = {
       enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.edenNvf;
-    };
-  };
-
-  perSystem = {
-    pkgs,
-    lib,
-    self',
-    ...
-  }: {
-    packages.edenNvf = inputs.wrapper-modules.wrappers.nvf.wrap {
-      inherit pkgs;
-      inherit config;
       settings = {
         vim = {
+          withRuby = false;
+      	  withPython3 = false;
+
           formatter.conform-nvim = {
             enable = true;
             setupOpts.formatters-by-ft = {
@@ -44,26 +33,27 @@
 
           theme = {
             enable = true;
-
-            name = "base16";
-            base16-colors = with config.colorscheme.palette; {
-              base00 = "${base00}";
-              base01 = "${base01}";
-              base02 = "${base02}";
-              base03 = "${base03}";
-              base04 = "${base04}";
-              base05 = "${base05}";
-              base06 = "${base06}";
-              base07 = "${base07}";
-              base08 = "${base08}";
-              base09 = "${base09}";
-              base0A = "${base0A}";
-              base0B = "${base0B}";
-              base0C = "${base0C}";
-              base0D = "${base0D}";
-              base0E = "${base0E}";
-              base0F = "${base0F}";
-            };
+            name = "tokyonight";
+            style = "night";
+          #  name = "base16";
+            #base16-colors = with config.colorscheme.palette; {
+            #  base00 = "${base00}";
+            #  base01 = "${base01}";
+            #  base02 = "${base02}";
+            #  base03 = "${base03}";
+            #  base04 = "${base04}";
+            #  base05 = "${base05}";
+            #  base06 = "${base06}";
+            #  base07 = "${base07}";
+            #  base08 = "${base08}";
+            #  base09 = "${base09}";
+            #  base0A = "${base0A}";
+            #  base0B = "${base0B}";
+            #  base0C = "${base0C}";
+            #  base0D = "${base0D}";
+            #  base0E = "${base0E}";
+            #  base0F = "${base0F}";
+            #};
           };
 
           statusline.lualine.enable = true;
@@ -77,7 +67,6 @@
             nix.enable = true;
             nix.lsp.servers = ["nixd"];
 
-            ts.enable = true;
             rust.enable = true;
           };
 

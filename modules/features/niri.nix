@@ -5,6 +5,7 @@
 }: {
   flake.nixosModules.edenNiri = {
     pkgs,
+    #pkgs-stable,
     lib,
     ...
   }: {
@@ -17,6 +18,7 @@
 
   perSystem = {
     pkgs,
+    #pkgs-stable,
     lib,
     self',
     ... }: {
@@ -40,7 +42,10 @@
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-        input.keyboard.xkb.layout = "us,jp,cn";
+        input.keyboard.xkb = {
+	  layout = "us,jp,cn";
+	  options = "grp:win_space_toggle";
+	};
 
         layout.gaps = 5;
 

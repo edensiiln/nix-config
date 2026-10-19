@@ -5,13 +5,14 @@
       self.homeModules.edenHome
       {
         home.username = "eden";
-	home.homeDirector = "/home/eden";
+	home.homeDirectory = "/home/eden";
       }
     ];
   };
 
   flake.homeModules.edenHome = { pkgs, ... }: {
     imports = [
+      self.homeModules.edenKanshi
       self.homeModules.edenShells
     ];
 

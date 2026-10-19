@@ -33,7 +33,12 @@
 
 
     environment.systemPackages = with pkgs; [
-     discord 
+     discord
+     obsidian
+     gitui
+     wdisplays
+     godot_4_6
+     libreoffice-qt
     ];
 
     hardware.bluetooth = {
